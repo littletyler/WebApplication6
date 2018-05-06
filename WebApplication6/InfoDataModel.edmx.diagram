@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9349cf80ecc8460f9795779ea40562ff" Name="Diagram1">
+        <EntityTypeShape EntityType="ISYS4283F1731Model1.ApplicationBase" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ISYS4283F1731Model1.EventHistory" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ISYS4283F1731Model1.UserBase" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ISYS4283F1731Model1.UserInformation" Width="1.5" PointX="4.125" PointY="7.25" IsExpanded="true" />
+        <AssociationConnector Association="ISYS4283F1731Model1.FK_UserIDApplication" ManuallyRouted="false" />
+        <AssociationConnector Association="ISYS4283F1731Model1.FK_UserID" ManuallyRouted="false" />
+        <AssociationConnector Association="ISYS4283F1731Model1.FK_UserIDInformation" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

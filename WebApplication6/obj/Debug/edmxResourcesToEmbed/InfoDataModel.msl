@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ISYS4283F1731Model1StoreContainer" CdmEntityContainer="ISYS4283F1731Entities2">
+    <EntitySetMapping Name="ApplicationBases">
+      <EntityTypeMapping TypeName="ISYS4283F1731Model1.ApplicationBase">
+        <MappingFragment StoreEntitySet="ApplicationBase">
+          <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="CurrentEmployer" ColumnName="CurrentEmployer" />
+          <ScalarProperty Name="CurrentEmployerTime" ColumnName="CurrentEmployerTime" />
+          <ScalarProperty Name="CurrentEmployerPhone" ColumnName="CurrentEmployerPhone" />
+          <ScalarProperty Name="FormerEmployer" ColumnName="FormerEmployer" />
+          <ScalarProperty Name="FormerEmployerTime" ColumnName="FormerEmployerTime" />
+          <ScalarProperty Name="FormerEmployerPhone" ColumnName="FormerEmployerPhone" />
+          <ScalarProperty Name="AnnualIncome" ColumnName="AnnualIncome" />
+          <ScalarProperty Name="FamilyMembersInHome" ColumnName="FamilyMembersInHome" />
+          <ScalarProperty Name="Dependents" ColumnName="Dependents" />
+          <ScalarProperty Name="Pets" ColumnName="Pets" />
+          <ScalarProperty Name="PetType" ColumnName="PetType" />
+          <ScalarProperty Name="RelationshipStatus" ColumnName="RelationshipStatus" />
+          <ScalarProperty Name="ApplicationStreetAddr" ColumnName="ApplicationStreetAddr" />
+          <ScalarProperty Name="ApplicationCity" ColumnName="ApplicationCity" />
+          <ScalarProperty Name="ApplicationStateAbbr" ColumnName="ApplicationStateAbbr" />
+          <ScalarProperty Name="ApplicationZip" ColumnName="ApplicationZip" />
+          <ScalarProperty Name="ApplicationCounty" ColumnName="ApplicationCounty" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventHistories">
+      <EntityTypeMapping TypeName="ISYS4283F1731Model1.EventHistory">
+        <MappingFragment StoreEntitySet="EventHistory">
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="ActionDate" ColumnName="ActionDate" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+          <ScalarProperty Name="StreetAddr" ColumnName="StreetAddr" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="StateAbbr" ColumnName="StateAbbr" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="County" ColumnName="County" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserBases">
+      <EntityTypeMapping TypeName="ISYS4283F1731Model1.UserBase">
+        <MappingFragment StoreEntitySet="UserBase">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="SSN" ColumnName="SSN" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserInformations">
+      <EntityTypeMapping TypeName="ISYS4283F1731Model1.UserInformation">
+        <MappingFragment StoreEntitySet="UserInformation">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FormerFirstName" ColumnName="FormerFirstName" />
+          <ScalarProperty Name="FormerLastName" ColumnName="FormerLastName" />
+          <ScalarProperty Name="PreferredFirstName" ColumnName="PreferredFirstName" />
+          <ScalarProperty Name="CurrentStreetAddr" ColumnName="CurrentStreetAddr" />
+          <ScalarProperty Name="CurrentCity" ColumnName="CurrentCity" />
+          <ScalarProperty Name="CurrentStateAbbr" ColumnName="CurrentStateAbbr" />
+          <ScalarProperty Name="CurrentZip" ColumnName="CurrentZip" />
+          <ScalarProperty Name="CurrentCountry" ColumnName="CurrentCountry" />
+          <ScalarProperty Name="CurrentCounty" ColumnName="CurrentCounty" />
+          <ScalarProperty Name="ResidencyYR" ColumnName="ResidencyYR" />
+          <ScalarProperty Name="FormerStreetAddr" ColumnName="FormerStreetAddr" />
+          <ScalarProperty Name="FormerCity" ColumnName="FormerCity" />
+          <ScalarProperty Name="FormerStateAbbr" ColumnName="FormerStateAbbr" />
+          <ScalarProperty Name="FormerZip" ColumnName="FormerZip" />
+          <ScalarProperty Name="FormerCountry" ColumnName="FormerCountry" />
+          <ScalarProperty Name="FormerCounty" ColumnName="FormerCounty" />
+          <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+          <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="MailingStreetAddr" ColumnName="MailingStreetAddr" />
+          <ScalarProperty Name="MailingCity" ColumnName="MailingCity" />
+          <ScalarProperty Name="MailingStateAbbr" ColumnName="MailingStateAbbr" />
+          <ScalarProperty Name="MailingZip" ColumnName="MailingZip" />
+          <ScalarProperty Name="MailingCountry" ColumnName="MailingCountry" />
+          <ScalarProperty Name="MailingCounty" ColumnName="MailingCounty" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

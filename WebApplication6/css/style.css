@@ -1,0 +1,353 @@
+
+/* Global styles */
+html, body {
+	height: 100%;
+	margin: 0px;
+	padding: 0px
+  }
+
+
+body {
+	font-family: "Open Sans", sans-serif;
+	/* font-family: 'Libre Baskerville', serif; */
+	color: #686868;
+	font-size: 15px;
+	background-color: #6B7283;
+}
+
+
+.clearfix:after { 
+   content: " ";
+   display: block; 
+   height: 0; 
+   clear: both;
+}
+
+.clear{
+	clear: both;
+}
+
+a {
+	text-decoration: none;
+	color: #79accd;
+}
+
+a:hover {
+	color: #79accd;
+	text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin-bottom: 17px;
+	font-weight: 300;
+	/* color: #ff5400; */
+}
+
+h1 {
+	font-size: 28px;
+}
+
+h2 {
+	font-size: 26px;
+}
+
+h3 {
+	font-size: 24px;
+	margin-bottom: 15px;
+}
+
+ul{
+	list-style-type: square;
+	margin-left: 60px;
+	margin-bottom: 30px;
+}
+
+ul li{
+	line-height: 1.9;
+}
+
+
+.zipSearch{
+	display: none;
+}
+
+/* Popup */
+.markerPop{
+	
+}
+
+
+.twitter{
+	float: left;
+}
+
+.facebook{
+	float: left;
+	width: 150px !important;
+	height: 35px !important;
+}
+
+/* tablets and desktop */
+@media only screen and (min-width: 361px) {
+	
+	p {
+		margin-bottom: 15px;
+		line-height: 20px;
+	}
+
+	#map-canvas{
+		height: 100%;
+	}
+	#control{
+		float: left;
+		color: #D8D8DD;
+		width: 15%;
+		padding: 20px 15px 10px 15px;
+	}
+
+
+	.learnButton {
+		margin-top: 10px;
+		margin-bottom: 20px;
+		background: #BE757E;
+		border: 0;
+		color: #D8D8DD;
+		height: 37px;
+		line-height: 37px;
+		width: 100%;
+		text-align: center;
+		cursor: pointer;
+	}
+	
+	#mc_embed_signup{
+	margin-top: 30px;
+	float: left;   
+	width: 300px;
+	}
+
+	#mc_embed_signup form label{
+		margin-bottom: 30px;
+		line-height: 20px;
+		clear: right;
+	}
+
+	#mc_embed_signup form input.email{
+		width: 100%;
+		height: 40px;
+		font-size: 24px;
+		background-color: #6B7283;
+		border: 1px solid #BE757E;
+	}
+}
+
+/* phones */
+@media only screen and (max-width: 360px) {
+    
+	p {
+		margin-bottom: 10px;
+		line-height: 26px;
+	}
+	
+	#map-canvas{
+		height: 100%;
+	}
+	
+	#control{
+		color: #D8D8DD;
+		padding: 20px 30px 10px 30px;
+	}
+
+	#control input[type=text]{
+		width: 100%;
+		height: 40px;
+		font-size: 24px;
+		background-color: #6B7283;
+		border: 1px solid #BE757E;
+	}
+	
+	.learnButton {
+		float: left;
+		margin: 0px 10px 0px 10px;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		background: #BE757E;
+		border: 0;
+		color: #D8D8DD;
+		height: 37px;
+		line-height: 37px;
+		width: 40%;
+		text-align: center;
+	}
+	
+	#mc_embed_signup{
+		display: none;
+	}
+
+	#mc_embed_signup form label{
+		margin-bottom: 30px;
+		line-height: 20px;
+		clear: right;
+	}
+
+	#mc_embed_signup form input.email{
+		width: 100%;
+		height: 40px;
+		font-size: 24px;
+		background-color: #6B7283;
+		border: 1px solid #BE757E;
+	}
+}
+
+
+/* POPUP CSS */
+
+body {
+    margin: 0;
+  /*  background: radial-gradient(#666, #222); */
+    overflow: hidden;
+}
+
+.moving-zone {
+    position: absolute;
+    top:50%; left:50%;
+    width:300px; height:120px;
+    margin: -60px 0 0 -150px;
+    perspective: 800px;
+}
+.popup {
+    position: absolute;
+    width:300px;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 20px 0 20px 0;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    background: -webkit-linear-gradient(top left, white 50%, coral 50%);
+    background:    -moz-linear-gradient(top left, white 50%, coral 50%);
+    background:     -ms-linear-gradient(top left, white 50%, coral 50%);
+    background:      -o-linear-gradient(top left, white 50%, coral 50%);
+    background:         linear-gradient(top left, white 50%, coral 50%);
+}
+.popup:before {
+    content: '';
+    position: absolute;
+    left:5%; top:5%;
+    width:90%; height:90%;
+    border-radius: inherit;
+    background: rgba(0,0,0,.1);
+    box-shadow: 0 0 40px 20px rgba(0,0,0,.1);
+    transform: translateZ(-100px);
+}
+.popup-content {
+    background: #444;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px 0 10px 0;
+}
+.popup-text {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 100;
+    text-align: center;
+    transform: translateZ(15px);
+}
+.popup-text b {
+    color: coral;
+    font-weight: 300;
+}
+
+/* SIDEBAR NAV */
+
+#sidebar-wrapper {
+	top: 52px;
+	left: -200px;
+	width: 200px;
+	background-color: #5677fc;
+	color: white;
+	position: fixed;
+	height: 100%;
+	z-index: 1;
+  }
+  .sidebar-nav {
+	position: absolute;
+	top: 0;
+	margin: 0;
+	padding: 0;
+	width: 250px;
+	list-style: none;
+  }
+  .sidebar-nav li {
+	text-indent: 20px;
+	line-height: 50px;
+  }
+  .sidebar-nav li a {
+	color: white;
+	display: block;
+	text-decoration: none;
+  }
+  .sidebar-nav li a:hover {
+	background: rgba(255,255,255,0.25);
+	color: white;
+	text-decoration: none;
+  }
+  .sidebar-nav li a:active, .sidebar-nav li a:focus {
+	text-decoration: none;
+  }
+  #sidebar-wrapper.sidebar-toggle {
+	transition: all 0.3s ease-out;
+	margin-left: -200px;
+  }
+  @media (min-width: 768px) {
+	#sidebar-wrapper.sidebar-toggle {
+	  transition: 0s;
+	  left: 200px;
+	}
+  }
+
+  .force-to-bottom {
+	position:absolute;
+	bottom: 2%;
+  }
+
+  /* CSS REQUIRED */
+.state-icon {
+    left: -5px;
+}
+.list-group-item-primary {
+    color: rgb(255, 255, 255);
+    background-color: rgb(66, 139, 202);
+}
+
+/* DEMO ONLY - REMOVES UNWANTED MARGIN */
+.well .list-group {
+    margin-bottom: 0px;
+}
+
+
+/* BUTTON 5 */
+.btn-5 {
+	overflow: hidden;
+  }
+  
+  .btn-5::after {
+	/*background-color: #f00;*/
+	height: 100%;
+	left: -35%;
+	top: 0;
+	transform: skew(50deg);
+	transition-duration: 0.6s;
+	transform-origin: top left;
+	width: 0;
+  }
+  
+  .btn-5:hover:after {
+	height: 100%;
+	width: 135%;
+  }
+
+  .glyphicon-star-empty:hover {
+	color:lightgoldenrodyellow!important;
+	font-weight:900;
+  }

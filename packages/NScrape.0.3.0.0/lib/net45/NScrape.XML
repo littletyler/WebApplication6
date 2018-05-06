@@ -1,0 +1,2218 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NScrape</name>
+    </assembly>
+    <members>
+        <member name="T:NScrape.BinaryWebResponse">
+            <summary>
+            Represents a web response for a request that returned binary data.
+            </summary>
+        </member>
+        <member name="M:NScrape.BinaryWebResponse.#ctor(System.Boolean,System.Uri,System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.BinaryWebResponse"/> class.
+            </summary>
+            <param name="success"><b>true</b> if the response is considered successful, <b>false</b> otherwise.</param>
+            <param name="responseUrl">The URL of the response.</param>
+            <param name="data">The data that was returned by the web server.</param>
+            <remarks>
+            Deprecated; please use <see cref="M:NScrape.BinaryWebResponse.#ctor(System.Boolean,System.Net.HttpWebResponse)"/> instead.
+            </remarks>
+        </member>
+        <member name="M:NScrape.BinaryWebResponse.#ctor(System.Boolean,System.Net.HttpWebResponse)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.BinaryWebResponse"/> class.
+            </summary>
+            <param name="success"><b>true</b> if the response is considered successful, <b>false</b> otherwise.</param>
+            <param name="webResponse">The web response object.</param>
+        </member>
+        <member name="P:NScrape.BinaryWebResponse.ContentLength">
+            <summary>
+            Gets the length of the content returned by the request.
+            </summary>
+        </member>
+        <member name="M:NScrape.BinaryWebResponse.Close">
+            <summary>
+            Closes the binary response stream.
+            </summary>
+            <remarks>
+            The Close method closes the binary response stream and releases the connection to the resource for reuse by other requests.
+            <br/><br/>
+            You must call either the <see cref="M:System.IO.Stream.Close">Stream.Close</see> or the BinaryWebResponse.Close method to close the stream and release the
+            connection for reuse. It is not necessary to call both <see cref="M:System.IO.Stream.Close">Stream.Close</see> and BinaryWebResponse.Close, but doing so does not cause an
+            error. Failure to close the stream can cause your application to run out of connections.
+            </remarks>
+            <seealso cref="M:NScrape.BinaryWebResponse.GetResponseStream"/>
+        </member>
+        <member name="P:NScrape.BinaryWebResponse.Data">
+            <summary>
+            Gets the binary data.
+            </summary>
+            <remarks>
+            Deprecated; please use <see cref="M:NScrape.BinaryWebResponse.GetResponseStream"/> instead.
+            </remarks>
+        </member>
+        <member name="M:NScrape.BinaryWebResponse.DisposeManagedRessources">
+            <summary>
+            Handles disposal of managed resources.
+            </summary>
+            <remarks>
+            Inheriting classes owning managed resources should override this method and use it to dispose of them.
+            </remarks>
+        </member>
+        <member name="M:NScrape.BinaryWebResponse.GetResponseStream">
+            <summary>
+            Gets the stream that is used to read the binary response.
+            </summary>
+            <returns>A <see cref="T:System.IO.Stream"/> containing the binary response.</returns>
+            <remarks>
+            The GetResponseStream method returns the binary data stream from the response.
+            <br/><br/>
+            <note>
+            You must call either the <see cref="M:System.IO.Stream.Close">Stream.Close</see> or the <see cref="M:NScrape.BinaryWebResponse.Close"/> method to close the stream and release the
+            connection for reuse. It is not necessary to call both <see cref="M:System.IO.Stream.Close">Stream.Close</see> and <see cref="M:NScrape.BinaryWebResponse.Close"/>, but doing so does not cause an
+            error. Failure to close the stream can cause your application to run out of connections.
+            </note>
+            </remarks>
+            <seealso cref="M:NScrape.BinaryWebResponse.Close"/>
+        </member>
+        <member name="T:NScrape.Forms.HtmlFormDefinition">
+            <summary>
+            Represents the definition of an HTML form.
+            </summary>
+        </member>
+        <member name="P:NScrape.Forms.HtmlFormDefinition.Attributes">
+            <summary>
+            Gets the attributes of the HTML form.
+            </summary>
+        </member>
+        <member name="P:NScrape.Forms.HtmlFormDefinition.Controls">
+            <summary>
+            Gets the controls contained within the HTML form.
+            </summary>
+        </member>
+        <member name="P:NScrape.Forms.HtmlFormDefinition.Id">
+            <summary>
+            Gets the <b>id</b> attribute of the HTML form.
+            </summary>
+            <remarks>
+            If the HTML form does not have an <b>id</b> attribute, <b>null</b> is returned.
+            </remarks>
+        </member>
+        <member name="P:NScrape.Forms.HtmlFormDefinition.PageHtml">
+            <summary>
+            Gets the HTML text of the page containing the form.
+            </summary>
+        </member>
+        <member name="M:NScrape.Forms.HtmlFormDefinition.Parse(System.String)">
+            <summary>
+            Parses HTML form definitions out of  HTML text.
+            </summary>
+            <param name="html">Contains the HTML text to be parsed.</param>
+            <returns>A collection of <see cref="T:NScrape.Forms.HtmlFormDefinition"/> objects</returns>
+        </member>
+        <member name="T:NScrape.Forms.InputCheckableHtmlFormControl">
+            <summary>
+            Provides the base implementation for HTML controls that may be <i>checked</i>.
+            </summary>
+        </member>
+        <member name="P:NScrape.Forms.InputCheckableHtmlFormControl.Checked">
+            <summary>
+            Gets or sets whether or not the control is checked.
+            </summary>
+        </member>
+        <member name="P:NScrape.Forms.InputCheckableHtmlFormControl.Value">
+            <summary>
+            Gets the value of the control.
+            </summary>
+        </member>
+        <member name="T:NScrape.Forms.BasicAspxForm">
+            <summary>
+            Represents a basic ASPX form that should do the trick in most cases.
+            </summary>
+            <remarks>
+            If you need additional or specialized functionality, you can create a form class that 
+            inherits from <see cref="T:NScrape.Forms.BasicForm"/> or <see cref="T:NScrape.Forms.HtmlForm"/>.
+            </remarks>
+        </member>
+        <member name="M:NScrape.Forms.BasicAspxForm.#ctor(NScrape.IWebClient)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.Forms.BasicAspxForm"/> class.
+            </summary>
+            <param name="webClient">Contains the web client to be used to request and submit the form.</param>
+        </member>
+        <member name="M:NScrape.Forms.BasicAspxForm.Submit(System.String,System.String)">
+            <summary>
+            Submits the form to the server.
+            </summary>
+            <param name="eventTargetValue">Contains the value for <b>__EVENTTARGET</b>, the control doing the submission.</param>
+            <param name="eventArgumentValue">Contains the value for <b>__EVENTARGUMENT</b>, any additional information.</param>
+            <returns>The server response.</returns>
+        </member>
+        <member name="T:NScrape.Forms.BasicForm">
+            <summary>
+            Provides the base implementation for basic HTML forms.
+            </summary>
+            <remarks>
+            This class is intended to provide a basic foundation for building form classes. It exposes control collections by type for
+            easy usage.
+            <br/><br/>
+            If you need additional or specialized functionality, you can create a form class that 
+            inherits from <see cref="T:NScrape.Forms.HtmlForm"/>.
+            </remarks>
+        </member>
+        <member name="M:NScrape.Forms.BasicForm.#ctor(NScrape.IWebClient)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.Forms.BasicForm"/> class.
+            </summary>
+            <param name="webClient">Contains the web client to be used to request and submit the form.</param>
+        </member>
+        <member name="P:NScrape.Forms.BasicForm.AllControls">
+            <summary>
+            Gets all HTML controls contained within the form.
+            </summary>
+        </member>
+        <member name="P:NScrape.Forms.BasicForm.CheckBoxControls">
+            <summary>
+            Gets the HTML <b>input checkbox</b> controls contained within the form.
+            </summary>
+        </member>
+        <member name="P:NScrape.Forms.BasicForm.InputControls">
+            <summary>
+            Gets the  HTML <b>input</b> controls contained within the form.
+            </summary>
+        </member>
+        <member name="P:NScrape.Forms.BasicForm.RadioControls">
+            <summary>
+            Gets the  HTML <b>input radio</b> controls contained within the form.
+            </summary>
+        </member>
+        <member name="P:NScrape.Forms.BasicForm.SelectControls">
+            <summary>
+            Gets the  HTML <b>select</b> controls contained within the form.
+            </summary>
+        </member>
+        <member name="P:NScrape.Forms.BasicForm.TextAreaControls">
+            <summary>
+            Gets the  HTML <b>textarea</b> controls contained within the form.
+            </summary>
+        </member>
+        <member name="T:NScrape.Forms.BasicHtmlForm">
+            <summary>
+            Represents a basic HTML form that should do the trick in most cases.
+            </summary>
+            <remarks>
+            If you need additional or specialized functionality, you can create a form class that 
+            inherits from <see cref="T:NScrape.Forms.BasicForm"/> or <see cref="T:NScrape.Forms.HtmlForm"/>.
+            </remarks>
+        </member>
+        <member name="M:NScrape.Forms.BasicHtmlForm.#ctor(NScrape.IWebClient)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.Forms.BasicHtmlForm"/> class.
+            </summary>
+            <param name="webClient">Contains the web client to be used to request and submit the form.</param>
+        </member>
+        <member name="M:NScrape.Forms.BasicHtmlForm.Submit(System.String)">
+            <summary>
+            Submits the form to the server.
+            </summary>
+            <param name="submitButtonName">Contains the <b>name</b> attribute of the submit button or image.</param>
+            <returns>The server response.</returns>
+            <remarks>
+            When the form has multiple submit buttons/images, specify which one should be used; otherwise, for forms with a 
+            single submit button/image, the parameter may be omitted.
+            </remarks>
+        </member>
+        <member name="T:NScrape.Forms.TextAreaHtmlFormControl">
+            <summary>
+            Represents an HTML <b>textarea</b> control.
+            </summary>
+        </member>
+        <member name="P:NScrape.Forms.TextAreaHtmlFormControl.EncodedData">
+            <summary>
+            Gets the value of the control in <b>application/x-www-form-urlencoded</b> format.
+            </summary>
+        </member>
+        <member name="P:NScrape.Forms.TextAreaHtmlFormControl.Text">
+            <summary>
+            Gets or sets the text (value) of the control.
+            </summary>
+        </member>
+        <member name="T:NScrape.Forms.InputCheckBoxHtmlFormControl">
+            <summary>
+            Represents an HTML <b>input checkbox</b> control.
+            </summary>
+        </member>
+        <member name="M:NScrape.Forms.InputCheckBoxHtmlFormControl.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.Forms.InputCheckBoxHtmlFormControl"/> class.
+            </summary>
+            <param name="html">Contains the control HTML.</param>
+        </member>
+        <member name="T:NScrape.Forms.InputHtmlFormControlType">
+            <summary>
+            Indicates the type of HTML control.
+            </summary>
+        </member>
+        <member name="F:NScrape.Forms.InputHtmlFormControlType.Button">
+            <summary>
+            Client-side button.
+            </summary>
+        </member>
+        <member name="F:NScrape.Forms.InputHtmlFormControlType.CheckBox">
+            <summary>
+            Checkbox.
+            </summary>
+        </member>
+        <member name="F:NScrape.Forms.InputHtmlFormControlType.File">
+            <summary>
+            File selection control.
+            </summary>
+        </member>
+        <member name="F:NScrape.Forms.InputHtmlFormControlType.Hidden">
+            <summary>
+            Hidden text field.
+            </summary>
+        </member>
+        <member name="F:NScrape.Forms.InputHtmlFormControlType.Image">
+            <summary>
+            Image.
+            </summary>
+        </member>
+        <member name="F:NScrape.Forms.InputHtmlFormControlType.Password">
+            <summary>
+            Password text field.
+            </summary>
+        </member>
+        <member name="F:NScrape.Forms.InputHtmlFormControlType.Radio">
+            <summary>
+            Radio button.
+            </summary>
+        </member>
+        <member name="F:NScrape.Forms.InputHtmlFormControlType.Reset">
+            <summary>
+            Form reset button.
+            </summary>
+        </member>
+        <member name="F:NScrape.Forms.InputHtmlFormControlType.Submit">
+            <summary>
+            Form submission button.
+            </summary>
+        </member>
+        <member name="F:NScrape.Forms.InputHtmlFormControlType.Text">
+            <summary>
+            Text input field.
+            </summary>
+        </member>
+        <member name="F:NScrape.Forms.InputHtmlFormControlType.Color">
+            <summary>
+            Color.
+            </summary>
+        </member>
+        <member name="F:NScrape.Forms.InputHtmlFormControlType.Date">
+            <summary>
+            Date.
+            </summary>
+        </member>
+        <member name="F:NScrape.Forms.InputHtmlFormControlType.DateTime">
+            <summary>
+            Date/time.
+            </summary>
+        </member>
+        <member name="F:NScrape.Forms.InputHtmlFormControlType.DateTimeLocal">
+            <summary>
+            Local date/time (no time zone information).
+            </summary>
+        </member>
+        <member name="F:NScrape.Forms.InputHtmlFormControlType.Email">
+            <summary>
+            Email address.
+            </summary>
+        </member>
+        <member name="F:NScrape.Forms.InputHtmlFormControlType.Month">
+            <summary>
+            Month.
+            </summary>
+        </member>
+        <member name="F:NScrape.Forms.InputHtmlFormControlType.Number">
+            <summary>
+            Number.
+            </summary>
+        </member>
+        <member name="F:NScrape.Forms.InputHtmlFormControlType.Range">
+            <summary>
+            Range of values.
+            </summary>
+        </member>
+        <member name="F:NScrape.Forms.InputHtmlFormControlType.Search">
+            <summary>
+            Search box.
+            </summary>
+        </member>
+        <member name="F:NScrape.Forms.InputHtmlFormControlType.Tel">
+            <summary>
+            Telephone number.
+            </summary>
+        </member>
+        <member name="F:NScrape.Forms.InputHtmlFormControlType.Time">
+            <summary>
+            Time.
+            </summary>
+        </member>
+        <member name="F:NScrape.Forms.InputHtmlFormControlType.Url">
+            <summary>
+            URL.
+            </summary>
+        </member>
+        <member name="F:NScrape.Forms.InputHtmlFormControlType.Week">
+            <summary>
+            Week.
+            </summary>
+        </member>
+        <member name="F:NScrape.Forms.InputHtmlFormControlType.Unknown">
+            <summary>
+            Unknown control type.
+            </summary>
+        </member>
+        <member name="T:NScrape.Forms.NamespaceDoc">
+            <summary>
+            The <b>NScrape.Forms</b> namespace contains the types that provide HTML form handling functionality. 
+            </summary>
+        </member>
+        <member name="T:NScrape.Forms.InputRadioHtmlFormControl">
+            <summary>
+            Represents an HTML <b>input radio</b> control.
+            </summary>
+        </member>
+        <member name="M:NScrape.Forms.InputRadioHtmlFormControl.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.Forms.InputRadioHtmlFormControl"/> class.
+            </summary>
+            <param name="html">Contains the control HTML.</param>
+        </member>
+        <member name="T:NScrape.Forms.HtmlForm">
+            <summary>
+            Provides the base implementation for HTML form functionality.
+            </summary>
+        </member>
+        <member name="M:NScrape.Forms.HtmlForm.#ctor(NScrape.IWebClient)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.Forms.HtmlForm"/> class.
+            </summary>
+            <param name="webClient">Contains the web client to be used to request and submit the form.</param>
+        </member>
+        <member name="M:NScrape.Forms.HtmlForm.Load(System.Uri,System.Int32)">
+            <summary>
+            Loads the form specified by ordinal on the page at the specified URL.
+            </summary>
+            <param name="formUrl">Contains the URL of the page containing the form.</param>
+            <param name="formOrdinal">Contains the zero-based ordinal of the form to load.</param>
+            <remarks>
+            The specified (zero-based ordinal) form in the page shall be loaded.
+            </remarks>
+        </member>
+        <member name="M:NScrape.Forms.HtmlForm.Load(System.Uri,System.String,System.String)">
+            <summary>
+            Loads the form specified by identifying attributes on the page at the specified URL.
+            </summary>
+            <param name="formUrl">Contains the URL of the page containing the form.</param>
+            <param name="attribute">Contains the form attribute to be used to identify the form to load.</param>
+            <param name="attributeValue">Contains the form attribute value to be used to identify the form to load.</param>
+            <remarks>
+            Deprecated; please use <see cref="M:NScrape.Forms.HtmlForm.Load(System.Uri,System.Collections.Generic.KeyValuePair{System.String,System.String})"/> instead.
+            </remarks>
+        </member>
+        <member name="M:NScrape.Forms.HtmlForm.Load(System.Uri,System.Collections.Generic.KeyValuePair{System.String,System.String})">
+            <summary>
+            Loads the form specified by identifying attribute on the page at the specified URL.
+            </summary>
+            <param name="formUrl">Contains the URL of the page containing the form.</param>
+            <param name="identifyingAttribute">Contains the form attribute/value to be used to identify the form to load.</param>
+        </member>
+        <member name="M:NScrape.Forms.HtmlForm.Load(System.Uri,System.String,System.Int32)">
+            <summary>
+            Loads the form specified by ordinal in the provided HTML.
+            </summary>
+            <param name="formUrl">Contains the URL where the page containing the form resides.</param>
+            <param name="formHtml">Contains the HTML text containing the form.</param>
+            <param name="formOrdinal">Contains the zero-based ordinal of the form to load.</param>
+            <remarks>
+            The specified (zero-based ordinal) form in the provided HTML text shall be loaded.
+            </remarks>
+        </member>
+        <member name="M:NScrape.Forms.HtmlForm.Load(System.Uri,System.String,System.String,System.String)">
+            <summary>
+            Loads the form specified by identifying attributes in the provided HTML.
+            </summary>
+            <param name="formUrl">Contains the URL where the page containing the form resides.</param>
+            <param name="formHtml">Contains the HTML text containing the form.</param>
+            <param name="attribute">Contains the form attribute to be used to identify the form to load.</param>
+            <param name="attributeValue">Contains the form attribute value to be used to identify the form to load.</param>
+            <remarks>
+            Deprecated; please use <see cref="M:NScrape.Forms.HtmlForm.Load(System.Uri,System.String,System.Collections.Generic.KeyValuePair{System.String,System.String})"/> instead.
+            </remarks>
+        </member>
+        <member name="M:NScrape.Forms.HtmlForm.Load(System.Uri,System.String,System.Collections.Generic.KeyValuePair{System.String,System.String})">
+            <summary>
+            Loads the form specified by identifying attribute in the provided HTML.
+            </summary>
+            <param name="formUrl">Contains the URL where the page containing the form resides.</param>
+            <param name="formHtml">Contains the HTML text containing the form.</param>
+            <param name="identifyingAttribute">Contains the form attribute/value to be used to identify the form to load.</param>
+            <remarks>
+            The form identified by the specified attribute/value in the provided HTML text shall be loaded.
+            </remarks>
+        </member>
+        <member name="M:NScrape.Forms.HtmlForm.Load(System.Uri,NScrape.Forms.HtmlFormDefinition)">
+            <summary>
+            Loads the form specified by the provided form definition.
+            </summary>
+            <param name="formUrl">Contains the URL where the page containing the form resides.</param>
+            <param name="formDefinition">Contains the form definition.</param>
+        </member>
+        <member name="P:NScrape.Forms.HtmlForm.ActionUrl">
+            <summary>
+            Gets the action URL of the form.
+            </summary>
+            <remarks>
+            The action URL is URL to which the form shall be submitted. If the form does not specify an action URL,
+            the form URL shall be used.
+            </remarks>
+        </member>
+        <member name="P:NScrape.Forms.HtmlForm.Attributes">
+            <summary>
+            Gets the attributes of the form.
+            </summary>
+        </member>
+        <member name="P:NScrape.Forms.HtmlForm.Controls">
+            <summary>
+            Gets the controls contained within the HTML form.
+            </summary>
+        </member>
+        <member name="P:NScrape.Forms.HtmlForm.FormUrl">
+            <summary>
+            Gets the URL of the page where the form is located.
+            </summary>
+        </member>
+        <member name="P:NScrape.Forms.HtmlForm.Html">
+            <summary>
+            Gets the HTML text of the page containing the form.
+            </summary>
+        </member>
+        <member name="P:NScrape.Forms.HtmlForm.WebClient">
+            <summary>
+            Gets the web client used to request and submit the form.
+            </summary>
+        </member>
+        <member name="M:NScrape.Forms.HtmlForm.BuildAspxPostBackRequest(System.String,System.String)">
+            <summary>
+            Builds the request data to be used to submit an ASPX form.
+            </summary>
+            <param name="eventTargetValue">Contains the value for <b>__EVENTTARGET</b>, the control doing the submission.</param>
+            <param name="eventArgumentValue">Contains the value for <b>__EVENTARGUMENT</b>, any additional information.</param>
+            <returns>The request data in <b>application/x-www-form-urlencoded</b> format.</returns>
+            <remarks>
+            See <see href="http://www.evagoras.com/2011/02/10/how-postback-works-in-asp-net/">How postback works in ASP.NET</see> for a good overview on the topic.
+            </remarks>
+        </member>
+        <member name="M:NScrape.Forms.HtmlForm.BuildRequest(System.String)">
+            <summary>
+            Builds the request data to be used to submit an HTML form.
+            </summary>
+            <param name="submitButtonName">Contains the <b>name</b> attribute of the submit button or image.</param>
+            <returns>The request data in <b>application/x-www-form-urlencoded</b> format.</returns>
+            <remarks>
+            When the form has multiple submit buttons/images, specify which one should be used; otherwise, for forms with a 
+            single submit button/image, the parameter may be omitted.
+            <br/><br/>
+            The values of any <see cref="P:NScrape.Forms.HtmlFormControl.Disabled">disabled</see> controls are omitted.
+            </remarks>
+        </member>
+        <member name="P:NScrape.Forms.HtmlForm.SubmitAsXmlHttpRequest">
+            <summary>
+            Gets or sets a value indicating whether the form submission shall attempt to mimic a JQuery request.
+            </summary>
+            <remarks>
+            If <b>true</b>, the form request shall have the <b>X-Requested-With=XMLHttpRequest</b> header added to the headers collection. If <b>false</b>,
+            the header shall be removed if previously added.
+            </remarks>
+        </member>
+        <member name="M:NScrape.Forms.HtmlForm.SubmitHtmlRequest(System.String)">
+            <summary>
+            Submits the form, specifying the request data.
+            </summary>
+            <param name="requestData">Contains the request data in <b>application/x-www-form-urlencoded</b> format.</param>
+            <returns>The HTML response from the server.</returns>
+            <remarks>
+            This method is convenient for forms that are known to return an HTML response. Requests shall be automatically redirected if necessary.
+            </remarks>
+        </member>
+        <member name="M:NScrape.Forms.HtmlForm.SubmitRedirectRequest(System.String)">
+            <summary>
+            Submits the form, specifying the request data.
+            </summary>
+            <param name="requestData">Contains the request data in <b>application/x-www-form-urlencoded</b> format.</param>
+            <returns>The redirection response from the server.</returns>
+            <remarks>
+            This method is convenient for forms that are known to return a redirection response. 
+            </remarks>
+        </member>
+        <member name="M:NScrape.Forms.HtmlForm.SubmitRequest(System.String,NScrape.WebResponseType)">
+            <summary>
+            Submits the form, specifying the request data and the expected response type.
+            </summary>
+            <param name="requestData">Contains the request data in <b>application/x-www-form-urlencoded</b> format.</param>
+            <param name="validType">Contains the expected response type.</param>
+            <returns>The response from the server.</returns>
+            <remarks>
+            This overload is convenient for forms that are known to return a specific response type. Requests shall be automatically redirected if necessary.
+            </remarks>
+        </member>
+        <member name="M:NScrape.Forms.HtmlForm.SubmitRequest(System.String,System.Boolean,NScrape.WebResponseType)">
+            <summary>
+            Submits the form, specifying the request data, redirection action, and the expected response type.
+            </summary>
+            <param name="requestData">Contains the request data in <b>application/x-www-form-urlencoded</b> format.</param>
+            <param name="autoRedirect"><b>true</b> if the request should be automatically redirected; <b>false</b> otherwise.</param>
+            <param name="validType">Contains the expected response type.</param>
+            <returns>The response from the server.</returns>
+            <remarks>
+            This overload is convenient when the redirection action needs to be specified.
+            </remarks>
+        </member>
+        <member name="M:NScrape.Forms.HtmlForm.SubmitRequest(System.String,NScrape.WebResponseType[])">
+            <summary>
+            Submits the form, specifying the request data and a range of valid response types.
+            </summary>
+            <param name="requestData">Contains the request data in <b>application/x-www-form-urlencoded</b> format.</param>
+            <param name="validTypes">Contains a list of acceptable response types.</param>
+            <returns>The response from the server.</returns>
+            <remarks>
+            This overload is convenient when multiple response types are possible. Requests shall be automatically redirected if necessary.
+            </remarks>
+        </member>
+        <member name="M:NScrape.Forms.HtmlForm.SubmitRequest(System.String,System.Boolean,NScrape.WebResponseType[])">
+            <summary>
+            Submits the form, specifying the request data, redirection action, and a range of valid response types.
+            </summary>
+            <param name="requestData">Contains the request data in <b>application/x-www-form-urlencoded</b> format.</param>
+            <param name="autoRedirect"><b>true</b> if the request should be automatically redirected; <b>false</b> otherwise.</param>
+            <param name="validTypes">Contains a list of acceptable response types.</param>
+            <returns>The response from the server.</returns>
+            <remarks>
+            This overload allows all form request options to be specified.
+            </remarks>
+        </member>
+        <member name="T:NScrape.Forms.HtmlFormControl">
+            <summary>
+            Provides the base implementation for HTML form controls.
+            </summary>
+        </member>
+        <member name="P:NScrape.Forms.HtmlFormControl.Attributes">
+            <summary>
+            Gets the attributes of the control.
+            </summary>
+        </member>
+        <member name="M:NScrape.Forms.HtmlFormControl.AddAttributes(System.String)">
+            <summary>
+            Parse and add attributes from the control HTML.
+            </summary>
+            <param name="html">Contains the control HTML.</param>
+        </member>
+        <member name="M:NScrape.Forms.HtmlFormControl.AddAttribute(System.String,System.String)">
+            <summary>
+            Adds an individual attribute to the control HTML.
+            </summary>
+            <param name="name">
+            The name of the attribute to add.
+            </param>
+            <param name="value">
+            The attribute value.
+            </param>
+        </member>
+        <member name="P:NScrape.Forms.HtmlFormControl.Disabled">
+            <summary>
+            Gets or sets whether or not the control is disabled.
+            </summary>
+            <remarks>
+            Disabled controls are omitted by <see cref="M:NScrape.Forms.HtmlForm.BuildRequest(System.String)"/>.
+            </remarks>
+        </member>
+        <member name="P:NScrape.Forms.HtmlFormControl.Id">
+            <summary>
+            Gets the value of the control's <b>id</b> attribute.
+            </summary>
+            <remarks>
+            If the control does not have an <b>id</b> attribute, <b>null</b> is returned.
+            </remarks>
+        </member>
+        <member name="P:NScrape.Forms.HtmlFormControl.Name">
+            <summary>
+            Gets the value of the control's <b>name</b> attribute.
+            </summary>
+            <remarks>
+            If the control does not have an <b>name</b> attribute, <b>null</b> is returned.
+            </remarks>
+        </member>
+        <member name="P:NScrape.Forms.HtmlFormControl.EncodedData">
+            <summary>
+            Gets the value of the control in <b>application/x-www-form-urlencoded</b> format.
+            </summary>
+        </member>
+        <member name="T:NScrape.Forms.HtmlOption">
+            <summary>
+            Represents an HTML <b>select</b> control <b>option</b>.
+            </summary>
+        </member>
+        <member name="P:NScrape.Forms.HtmlOption.Attributes">
+            <summary>
+            Gets the attributes of the option.
+            </summary>
+        </member>
+        <member name="P:NScrape.Forms.HtmlOption.Option">
+            <summary>
+            Gets the option text.
+            </summary>
+        </member>
+        <member name="P:NScrape.Forms.HtmlOption.Selected">
+            <summary>
+            Gets or sets whether or not the option is selected.
+            </summary>
+        </member>
+        <member name="P:NScrape.Forms.HtmlOption.Value">
+            <summary>
+            Gets the value of the option.
+            </summary>
+        </member>
+        <member name="T:NScrape.Forms.InputHtmlFormControl">
+            <summary>
+            Represents an HTML <b>input</b> control.
+            </summary>
+        </member>
+        <member name="M:NScrape.Forms.InputHtmlFormControl.#ctor(NScrape.Forms.InputHtmlFormControlType,System.String,System.String)">
+            <summary>
+            Initialzes a new instance of the <see cref="T:NScrape.Forms.InputHtmlFormControl"/> class.
+            </summary>
+            <param name="type">
+            The control type to create.
+            </param>
+            <param name="name">
+            The name of the control.
+            </param>
+            <param name="value">
+            The control value.
+            </param>
+        </member>
+        <member name="P:NScrape.Forms.InputHtmlFormControl.ControlType">
+            <summary>
+            Gets the type of the control.
+            </summary>
+        </member>
+        <member name="P:NScrape.Forms.InputHtmlFormControl.EncodedData">
+            <summary>
+            Gets the value of the control in <b>application/x-www-form-urlencoded</b> format.
+            </summary>
+        </member>
+        <member name="P:NScrape.Forms.InputHtmlFormControl.Value">
+            <summary>
+            Gets or sets the value of the control.
+            </summary>
+        </member>
+        <member name="M:NScrape.Forms.InputHtmlFormControl.ToString">
+            <summary>
+            Gets a <see cref="T:System.String"/> that represents the current <see cref="T:NScrape.Forms.InputHtmlFormControl"/>
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents the current <see cref="T:NScrape.Forms.InputHtmlFormControl"/>.
+            </returns>
+        </member>
+        <member name="T:NScrape.Forms.SelectHtmlFormControl">
+            <summary>
+            Represents an HTML <b>select</b> control.
+            </summary>
+        </member>
+        <member name="P:NScrape.Forms.SelectHtmlFormControl.EncodedData">
+            <summary>
+            Gets the value of the control in <b>application/x-www-form-urlencoded</b> format.
+            </summary>
+        </member>
+        <member name="M:NScrape.Forms.SelectHtmlFormControl.UnselectAll">
+            <summary>
+            Unselect all of the control's options.
+            </summary>
+        </member>
+        <member name="P:NScrape.Forms.SelectHtmlFormControl.Options">
+            <summary>
+            Gets the control's options.
+            </summary>
+        </member>
+        <member name="T:NScrape.IWebClient">
+            <summary>
+            Represents a web client that handles cookies and redirection.
+            </summary>
+        </member>
+        <member name="E:NScrape.IWebClient.AddingCookie">
+            <summary>
+      Occurs when a cookie is added to the <see cref="P:NScrape.IWebClient.CookieJar" />.
+    </summary><remarks>
+      As the <see cref="T:NScrape.WebClient" /> executes requests and receives cookies from the server in response, it stores
+      them in its cookie jar (a <see cref="T:System.Net.CookieContainer" />) and sends them along on subsequent requests.
+    </remarks><seealso cref="P:NScrape.IWebClient.CookieJar" /><seealso cref="T:NScrape.AddingCookieEventArgs" />
+        </member>
+        <member name="E:NScrape.IWebClient.SendingRequest">
+            <summary>
+      Occurs when a request is being sent.
+    </summary><remarks>
+      Use this event to be notified when the <see cref="T:NScrape.WebClient" /> sends a request.
+    </remarks><seealso cref="T:NScrape.SendingRequestEventArgs" />
+        </member>
+        <member name="E:NScrape.IWebClient.ProcessingResponse">
+            <summary>
+      Occurs when a response has been received and is about to be processed.
+    </summary><remarks>
+      Use this event to be notified just before the <see cref="T:NScrape.IWebClient" /> begins to process a newly-received response.
+    </remarks>
+        </member>
+        <member name="P:NScrape.IWebClient.CookieJar">
+            <summary>
+      Gets the cookies that have been collected by the <see cref="T:NScrape.WebClient" /> in the course of executing requests.
+    </summary><remarks>
+      As the <see cref="T:NScrape.WebClient" /> executes requests and receives cookies from the server in response, it stores
+      them in its cookie jar (a <see cref="T:System.Net.CookieContainer" />) and sends them along on subsequent requests.
+      <br /><br />
+      To be notified when a cookie is added to the jar, subscribe to the <see cref="E:NScrape.IWebClient.AddingCookie" /> event.
+    </remarks><seealso cref="E:NScrape.IWebClient.AddingCookie" />
+        </member>
+        <member name="M:NScrape.IWebClient.SendRequest(System.Uri)">
+            <summary>
+      Sends a GET request.
+    </summary><param name="destination">Specifies the destination of the request.</param><remarks>
+      Sends a GET request that shall be automatically redirected if applicable.
+    </remarks><returns>The response from the server.</returns><example>
+      <code>
+        var webClient = new WebClient();
+
+        var uri = new Uri( "http://www.foo.com" );
+
+        using ( var response = webClient.SendRequest( uri ) ) {
+
+        }
+      </code>
+    </example><seealso cref="T:NScrape.WebResponse" />
+        </member>
+        <member name="M:NScrape.IWebClient.SendRequest(System.Uri,System.Boolean)">
+            <summary>
+      Sends a GET request, specifying redirection.
+    </summary><param name="destination">Specifies the destination of the request.</param><param name="autoRedirect">
+      <b>true</b> if the request should be automatically redirected; <b>false</b> otherwise.
+    </param><remarks>
+      Sends a GET request, specifying whether the request shall be automatically redirected if applicable.
+    </remarks><returns>The response from the server.</returns><example>
+      <code>
+        var webClient = new WebClient();
+
+        var uri = new Uri( "http://www.foo.com" );
+
+        using ( var response = webClient.SendRequest( uri, false ) ) {
+
+        }
+      </code>
+    </example><seealso cref="T:NScrape.WebResponse" />
+        </member>
+        <member name="M:NScrape.IWebClient.SendRequest(System.Uri,System.String)">
+            <summary>
+      Sends a POST request.
+    </summary><param name="destination">Specifies the destination of the request.</param><param name="requestData">
+      Contains the request data in <b>application/x-www-form-urlencoded</b> format.
+    </param><remarks>
+      Sends a POST request that shall be automatically redirected if applicable.
+    </remarks><returns>The response from the server.</returns><example>
+      <code>
+        var webClient = new WebClient();
+
+        var uri = new Uri( "http://www.foo.com" );
+        var data = "step=confirmation&amp;rt=L&amp;rp=%2Flogin%2Fhome&amp;p=0&amp;inputEmailHandle=foo&amp;inputPassword=bar";
+
+        using ( var response = webClient.SendRequest( uri, data ) ) {
+
+        }
+      </code>
+    </example><returns>The response from the server.</returns><seealso cref="T:NScrape.WebResponse" />
+        </member>
+        <member name="M:NScrape.IWebClient.SendRequest(System.Uri,System.String,System.Boolean)">
+            <summary>
+      Sends a POST request, specifying redirection.
+    </summary><param name="destination">Specifies the destination of the request.</param><param name="requestData">
+      Contains the request data in <b>application/x-www-form-urlencoded</b> format.
+    </param><param name="autoRedirect">
+      <b>true</b> if the request should be automatically redirected; <b>false</b> otherwise.
+    </param><remarks>
+      Sends a POST request, specifying whether the request shall be automatically redirected if applicable.
+    </remarks><returns>The response from the server.</returns><example>
+      <code>
+        var webClient = new WebClient();
+
+        var uri = new Uri( "http://www.foo.com" );
+        var data = "step=confirmation&amp;rt=L&amp;rp=%2Flogin%2Fhome&amp;p=0&amp;inputEmailHandle=foo&amp;inputPassword=bar";
+
+        using ( var response = webClient.SendRequest( uri, data, false ) ) {
+
+        }
+      </code>
+    </example><returns>The response from the server.</returns><seealso cref="T:NScrape.WebResponse" />
+        </member>
+        <member name="M:NScrape.IWebClient.SendRequest(NScrape.WebRequest)">
+            <summary>
+      Sends a GET or POST request.
+    </summary><param name="webRequest">The request to send.</param><remarks>
+      Sends a GET or POST request.
+    </remarks><returns>The response from the server.</returns><example>
+      <code>
+        var webClient = new WebClient();
+
+        var request = new PostWebRequest() {
+            Destination = new Uri( "http://www.foo.com" ),
+            RequestData = "step=confirmation&amp;rt=L&amp;rp=%2Flogin%2Fhome&amp;p=0&amp;inputEmailHandle=foo&amp;inputPassword=bar"
+        };
+
+        using ( var response = webClient.SendRequest( request ) ) {
+
+        }
+      </code>
+    </example><seealso cref="T:NScrape.WebRequest" /><seealso cref="T:NScrape.WebResponse" />
+        </member>
+        <member name="P:NScrape.IWebClient.UserAgent">
+            <summary>
+      Gets or sets the user agent for requests made by a <see cref="T:NScrape.WebClient" />.
+    </summary><remarks>
+      If the user agent is not explicitly set, it defaults to a string of the form: <code>NScrape/[version] (+https://github.com/darrylwhitmore/NScrape)</code>
+    </remarks><example>
+      <code>
+        var webClient = new WebClient {
+            UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko"
+        };
+      </code>
+    </example>
+        </member>
+        <member name="T:NScrape.JavaScriptWebResponse">
+            <summary>
+            Represents a web response for a request that returned JavaScript.
+            </summary>
+        </member>
+        <member name="M:NScrape.JavaScriptWebResponse.#ctor(System.Boolean,System.Uri,System.String,System.Text.Encoding)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.JavaScriptWebResponse"/> class.
+            </summary>
+            <param name="success"><b>true</b> if the response is considered successful, <b>false</b> otherwise.</param>
+            <param name="responseUrl">The URL of the response.</param>
+            <param name="javaScriptText">The JavaScript text of the response.</param>
+            <param name="encoding">The encoding of the JavaScript text.</param>
+            <remarks>
+            Deprecated; please use <see cref="M:NScrape.JavaScriptWebResponse.#ctor(System.Boolean,System.Net.HttpWebResponse)"/> instead.
+            </remarks>
+        </member>
+        <member name="M:NScrape.JavaScriptWebResponse.#ctor(System.Boolean,System.Net.HttpWebResponse)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.JavaScriptWebResponse"/> class.
+            </summary>
+            <param name="success"><b>true</b> if the response is considered successful, <b>false</b> otherwise.</param>
+            <param name="webResponse">The web response object.</param>
+        </member>
+        <member name="P:NScrape.JavaScriptWebResponse.JavaScript">
+            <summary>
+            Gets the JavaScript.
+            </summary>
+        </member>
+        <member name="T:NScrape.JsonWebResponse">
+            <summary>
+            Represents a web response for a request that returned JSON.
+            </summary>
+        </member>
+        <member name="M:NScrape.JsonWebResponse.#ctor(System.Boolean,System.Uri,System.String,System.Text.Encoding)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.JsonWebResponse"/> class.
+            </summary>
+            <param name="success"><b>true</b> if the response is considered successful, <b>false</b> otherwise.</param>
+            <param name="responseUrl">The URL of the response.</param>
+            <param name="jsonText">The JSON text of the response.</param>
+            <param name="encoding">The encoding of the JSON text.</param>
+            <remarks>
+            Deprecated; please use <see cref="M:NScrape.JsonWebResponse.#ctor(System.Boolean,System.Net.HttpWebResponse)"/> instead.
+            </remarks>
+        </member>
+        <member name="M:NScrape.JsonWebResponse.#ctor(System.Boolean,System.Net.HttpWebResponse)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.JsonWebResponse"/> class.
+            </summary>
+            <param name="success"><b>true</b> if the response is considered successful, <b>false</b> otherwise.</param>
+            <param name="webResponse">The web response object.</param>
+        </member>
+        <member name="P:NScrape.JsonWebResponse.Json">
+            <summary>
+            Gets the JSON data.
+            </summary>
+        </member>
+        <member name="T:NScrape.NScrapeExtensions">
+            <summary>
+            Provides miscellaneous extension methods.
+            </summary>
+        </member>
+        <member name="M:NScrape.NScrapeExtensions.GetEncoding(System.Net.HttpWebResponse)">
+            <summary>
+            Gets the encoding used by an <see cref="T:System.Net.HttpWebResponse"/>.
+            </summary>
+            <param name="webResponse">
+            The <see cref="T:System.Net.HttpWebResponse"/> for which to determine the content type.
+            </param>
+            <remarks>
+            If no encoding was specified, the <c>ISO-8859-1</c> character set is assumed.
+            </remarks>
+            <returns>
+            The content type used by the <see cref="T:System.Net.HttpWebResponse"/>.
+            </returns>
+        </member>
+        <member name="M:NScrape.NScrapeExtensions.GetResponseText(System.Net.HttpWebResponse,System.Text.Encoding)">
+            <summary>
+            Reads an <see cref="T:System.Net.HttpWebResponse"/> as plain text.
+            </summary>
+            <param name="webResponse">
+            The <see cref="T:System.Net.HttpWebResponse"/> to read.
+            </param>
+            <param name="encoding">
+            The encoding to be used. If omitted, the encoding specified in the web response shall be used.
+            </param>
+            <returns>
+            A <see cref="T:System.String"/> that represents the text of an <see cref="T:System.Net.HttpWebResponse"/>.
+            </returns>
+        </member>
+        <member name="T:NScrape.NScrapeUtility">
+            <summary>
+            Provides miscellaneous utility functions.
+            </summary>
+        </member>
+        <member name="M:NScrape.NScrapeUtility.ParseSetCookieHeader(System.String,System.String)">
+            <summary>
+            Parse cookies from from a <c>Set-Cookie</c> header.
+            </summary>
+            <param name="setCookieHeader">The <c>Set-Cookie</c> header.</param>
+            <param name="hostName">
+            The host name of the server to which the request was sent. Cookies will be scoped to this host name, unless otherwise
+            specified in the <c>Set-Cookie</c> declaration.
+            </param>
+            <returns>An enumeration of <see cref="T:System.Net.Cookie"/>.</returns>
+        </member>
+        <member name="M:NScrape.NScrapeUtility.TryParseHttpDate(System.String,System.DateTime@)">
+            <summary>
+            Converts the specified HTTP string representation of a date and time to its <see cref="T:System.DateTime"/> equivalent
+            </summary>
+            <param name="httpDate">Contains the HTTP date string.</param>
+            <param name="parsedDate">When this method returns, contains the <see cref="T:System.DateTime"/> value equivalent to the date and time
+            contained in <i>httpDate</i>, if the conversion succeeded, or <see cref="F:System.DateTime.MinValue">MinValue</see> if the conversion failed.
+            </param>
+            <remarks>
+            Handles conversion of the HTTP date formats specified in section <b>7.1.1.1. Date/Time Formats</b> of
+            <see href="http://tools.ietf.org/html/rfc7231">RFC 7231</see>.
+            </remarks>
+            <returns><b>true</b> if the date was successfully parsed; <b>false</b> otherwise.</returns>
+        </member>
+        <member name="T:NScrape.ScrapeException">
+            <summary>
+            The exception that is thrown when a web scraping operation fails.
+            </summary>
+        </member>
+        <member name="M:NScrape.ScrapeException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.ScrapeException"/> class.
+            </summary>
+        </member>
+        <member name="M:NScrape.ScrapeException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.ScrapeException"/> class with a specified error message.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+        </member>
+        <member name="M:NScrape.ScrapeException.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.ScrapeException"/> class with a specified error message and the HTML in question.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="html">Contains the HTML text that could not be scraped.</param>
+        </member>
+        <member name="M:NScrape.ScrapeException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.ScrapeException"/> class with serialized data.
+            </summary>
+            <param name="info">The object that holds the serialized object data.</param>
+            <param name="context">The contextual information about the source or destination.</param>
+        </member>
+        <member name="M:NScrape.ScrapeException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.ScrapeException"/> class with a specified error message, the HTML in question and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="html">Contains the HTML text that could not be scraped.</param>
+            <param name="innerException">The exception that is the cause of the current exception. If the innerException parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
+        </member>
+        <member name="M:NScrape.ScrapeException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.ScrapeException"/> class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception. If the innerException parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
+        </member>
+        <member name="M:NScrape.ScrapeException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            When overridden in a derived class, sets the <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with information about the exception.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown. </param><param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination. </param><exception cref="T:System.ArgumentNullException">The <paramref name="info"/> parameter is a null reference (Nothing in Visual Basic). </exception><filterpriority>2</filterpriority><PermissionSet><IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Read="*AllFiles*" PathDiscovery="*AllFiles*"/><IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="SerializationFormatter"/></PermissionSet>
+        </member>
+        <member name="P:NScrape.ScrapeException.Html">
+            <summary>
+            Gets the HTML text that could not be scraped.
+            </summary>
+        </member>
+        <member name="T:NScrape.Scraper">
+            <summary>
+            Provides the base implementation for HTML scraper functionality.
+            </summary>
+        </member>
+        <member name="M:NScrape.Scraper.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.Scraper"/> class.
+            </summary>
+            <param name="html">Contains the target HTML text.</param>
+            <exception cref="T:NScrape.ScrapeException">The target HTML text does not have a <b>DOCUMENT</b> node</exception>
+        </member>
+        <member name="P:NScrape.Scraper.HtmlDocument">
+            <summary>
+            Gets an <see href="https://htmlagilitypack.codeplex.com/">Html Agility Pack</see>&#160;<b>HtmlDocument</b> loaded with the target HTML text.
+            </summary>
+            <remarks>
+            Using the <see href="https://htmlagilitypack.codeplex.com/">Html Agility Pack</see> to scrape is recommended, but if you prefer, you can
+            scrape using regular expressions or standard string functions by accessing the <see cref="P:NScrape.Scraper.Html"/> property.
+            </remarks>
+        </member>
+        <member name="P:NScrape.Scraper.Html">
+            <summary>
+            Gets the target HTML text.
+            </summary>
+        </member>
+        <member name="T:NScrape.ProcessingResponseEventArgs">
+            <summary>
+            Provides data for the <see cref="E:NScrape.WebClient.ProcessingResponse"/> event.
+            </summary>
+        </member>
+        <member name="P:NScrape.ProcessingResponseEventArgs.Response">
+            <summary>
+            Gets the web response.
+            </summary>
+            <remarks>
+            Gets the web response that has been received from the server.
+            </remarks>
+        </member>
+        <member name="T:NScrape.SendingRequestEventArgs">
+            <summary>
+            Provides data for the <see cref="E:NScrape.WebClient.SendingRequest"/> event.
+            </summary>
+        </member>
+        <member name="P:NScrape.SendingRequestEventArgs.WebRequest">
+            <summary>
+            Gets the web request.
+            </summary>
+            <remarks>
+            Gets the web request that has been sent to the server.
+            </remarks>
+        </member>
+        <member name="T:NScrape.AddingCookieEventArgs">
+            <summary>
+            Provides data for the <see cref="E:NScrape.WebClient.AddingCookie"/> event.
+            </summary>
+        </member>
+        <member name="P:NScrape.AddingCookieEventArgs.Cookie">
+            <summary>
+            Gets the cookie.
+            </summary>
+            <remarks>
+            Gets the cookie that has been added to the <see cref="P:NScrape.WebClient.CookieJar"/>.
+            </remarks>
+        </member>
+        <member name="T:NScrape.ExceptionWebResponse">
+            <summary>
+            Represents a web response for a request that returned an exception.
+            </summary>
+        </member>
+        <member name="M:NScrape.ExceptionWebResponse.#ctor(System.Uri,System.Net.WebException)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.ExceptionWebResponse"/> class.
+            </summary>
+            <param name="responseUrl">The URL of the response.</param>
+            <param name="exception">The exception of the response.</param>
+        </member>
+        <member name="P:NScrape.ExceptionWebResponse.Exception">
+            <summary>
+            Gets the exception.
+            </summary>
+        </member>
+        <member name="T:NScrape.GetWebRequest">
+            <summary>
+            Represents a GET web request
+            </summary>
+        </member>
+        <member name="M:NScrape.GetWebRequest.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.GetWebRequest"/> class.
+            </summary>
+        </member>
+        <member name="M:NScrape.GetWebRequest.#ctor(System.Uri)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.GetWebRequest"/> class, specifying the destination.
+            </summary>
+            <param name="destination">Specifies the destination of the request.</param>
+        </member>
+        <member name="M:NScrape.GetWebRequest.#ctor(System.Uri,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.GetWebRequest"/> class, specifying the destination and redirection.
+            </summary>
+            <param name="destination">Specifies the destination of the request.</param>
+            <param name="autoRedirect"><b>true</b> if the request should be automatically redirected; <b>false</b> otherwise.</param>
+        </member>
+        <member name="M:NScrape.GetWebRequest.ToString">
+            <summary>
+            Gets a <see cref="T:System.String"/> that represents the current <see cref="T:NScrape.GetWebRequest"/>.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents the current <see cref="T:NScrape.GetWebRequest"/>.
+            </returns>
+        </member>
+        <member name="T:NScrape.HtmlWebResponse">
+            <summary>
+            Represents a web response for a request that returned HTML.
+            </summary>
+        </member>
+        <member name="M:NScrape.HtmlWebResponse.#ctor(System.Boolean,System.Uri,System.String,System.Text.Encoding)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.HtmlWebResponse"/> class.
+            </summary>
+            <param name="success"><b>true</b> if the response is considered successful, <b>false</b> otherwise.</param>
+            <param name="responseUrl">The URL of the response.</param>
+            <param name="htmlText">The HTML text of the response.</param>
+            <param name="encoding">The encoding of the HTML text.</param>
+            <remarks>
+            Deprecated; please use <see cref="M:NScrape.HtmlWebResponse.#ctor(System.Boolean,System.Net.HttpWebResponse)"/> instead.
+            </remarks>
+        </member>
+        <member name="M:NScrape.HtmlWebResponse.#ctor(System.Boolean,System.Net.HttpWebResponse)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.HtmlWebResponse"/> class.
+            </summary>
+            <param name="success"><b>true</b> if the response is considered successful, <b>false</b> otherwise.</param>
+            <param name="webResponse">The web response object.</param>
+        </member>
+        <member name="P:NScrape.HtmlWebResponse.Html">
+            <summary>
+            Gets the HTML.
+            </summary>
+        </member>
+        <member name="T:NScrape.ImageWebResponse">
+            <summary>
+            Represents a web response for a request that returned an image.
+            </summary>
+        </member>
+        <member name="M:NScrape.ImageWebResponse.#ctor(System.Boolean,System.Uri,System.Drawing.Bitmap)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.ImageWebResponse"/> class.
+            </summary>
+            <param name="success"><b>true</b> if the response is considered successful, <b>false</b> otherwise.</param>
+            <param name="responseUrl">The URL of the response.</param>
+            <param name="image">The image of the response.</param>
+            <remarks>
+            Deprecated; please use <see cref="M:NScrape.ImageWebResponse.#ctor(System.Boolean,System.Net.HttpWebResponse)"/> instead.
+            </remarks>
+        </member>
+        <member name="M:NScrape.ImageWebResponse.#ctor(System.Boolean,System.Net.HttpWebResponse)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.ImageWebResponse"/> class.
+            </summary>
+            <param name="success"><b>true</b> if the response is considered successful, <b>false</b> otherwise.</param>
+            <param name="webResponse">The web response object.</param>
+        </member>
+        <member name="M:NScrape.ImageWebResponse.DisposeManagedRessources">
+            <summary>
+            Handles disposal of managed resources.
+            </summary>
+            <remarks>
+            Inheriting classes owning managed resources should override this method and use it to dispose of them.
+            </remarks>
+        </member>
+        <member name="P:NScrape.ImageWebResponse.Image">
+            <summary>
+            Gets the image.
+            </summary>
+        </member>
+        <member name="T:NScrape.NamespaceDoc">
+            <summary>
+            The <b>NScrape</b> namespace contains the types that provide core framework functionality. 
+            </summary>
+        </member>
+        <member name="T:NScrape.NScrapeResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:NScrape.NScrapeResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:NScrape.NScrapeResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:NScrape.NScrapeResources.DefaultUserAgent">
+            <summary>
+              Looks up a localized string similar to  NScrape/{0} (+https://github.com/darrylwhitmore/NScrape).
+            </summary>
+        </member>
+        <member name="P:NScrape.NScrapeResources.InvalidFormId">
+            <summary>
+              Looks up a localized string similar to Form {0} &apos;{1}&apos; was not found..
+            </summary>
+        </member>
+        <member name="P:NScrape.NScrapeResources.InvalidFormOrdinal">
+            <summary>
+              Looks up a localized string similar to Invalid form ordinal: &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:NScrape.NScrapeResources.NoResponse">
+            <summary>
+              Looks up a localized string similar to No response returned..
+            </summary>
+        </member>
+        <member name="P:NScrape.NScrapeResources.NotAnInputHtmlControl">
+            <summary>
+              Looks up a localized string similar to HTML is not an INPUT control: &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:NScrape.NScrapeResources.NotASelectHtmlControl">
+            <summary>
+              Looks up a localized string similar to HTML is not a SELECT control: &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:NScrape.NScrapeResources.NotASelectHtmlControlOption">
+            <summary>
+              Looks up a localized string similar to HTML is not a SELECT OPTION: &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:NScrape.NScrapeResources.NotATextAreaHtmlControl">
+            <summary>
+              Looks up a localized string similar to HTML is not a TEXTAREA control: &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:NScrape.NScrapeResources.UnexpectedHtmlPage">
+            <summary>
+              Looks up a localized string similar to An HTML page was returned unexpectedly..
+            </summary>
+        </member>
+        <member name="P:NScrape.NScrapeResources.UnexpectedImage">
+            <summary>
+              Looks up a localized string similar to An image was returned unexpectedly..
+            </summary>
+        </member>
+        <member name="P:NScrape.NScrapeResources.UnexpectedPlainText">
+            <summary>
+              Looks up a localized string similar to Plain text was returned unexpectedly..
+            </summary>
+        </member>
+        <member name="P:NScrape.NScrapeResources.UnexpectedRedirect">
+            <summary>
+              Looks up a localized string similar to A redirection was returned unexpectedly..
+            </summary>
+        </member>
+        <member name="P:NScrape.NScrapeResources.UnexpectedResponseOnFormPageRequest">
+            <summary>
+              Looks up a localized string similar to Unexpected response sending request for form page: &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:NScrape.NScrapeResources.UnexpectedResponseOnFormSubmission">
+            <summary>
+              Looks up a localized string similar to Unexpected response submitting form to: &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:NScrape.NScrapeResources.UnexpectedXml">
+            <summary>
+              Looks up a localized string similar to Xml was returned unexpectedly..
+            </summary>
+        </member>
+        <member name="P:NScrape.NScrapeResources.UnsupportedHtmlControl">
+            <summary>
+              Looks up a localized string similar to Unsupported HTML control found:&apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:NScrape.NScrapeResources.UnsupportedResponseContentType">
+            <summary>
+              Looks up a localized string similar to Unsupported response content type: &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:NScrape.NScrapeResources.UnsupportedResponseType">
+            <summary>
+              Looks up a localized string similar to Unsupported response type: &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="T:NScrape.PlainTextWebResponse">
+            <summary>
+            Represents a web response for a request that returned plain text.
+            </summary>
+        </member>
+        <member name="M:NScrape.PlainTextWebResponse.#ctor(System.Boolean,System.Uri,System.String,System.Text.Encoding)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.PlainTextWebResponse"/> class.
+            </summary>
+            <param name="success"><b>true</b> if the response is considered successful, <b>false</b> otherwise.</param>
+            <param name="responseUrl">The URL of the response.</param>
+            <param name="plainText">The plain text of the response.</param>
+            <param name="encoding">The encoding of the plain text.</param>
+            <remarks>
+            Deprecated; please use <see cref="M:NScrape.PlainTextWebResponse.#ctor(System.Boolean,System.Net.HttpWebResponse)"/> instead.
+            </remarks>
+        </member>
+        <member name="M:NScrape.PlainTextWebResponse.#ctor(System.Boolean,System.Net.HttpWebResponse)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.PlainTextWebResponse"/> class.
+            </summary>
+            <param name="success"><b>true</b> if the response is considered successful, <b>false</b> otherwise.</param>
+            <param name="webResponse">The web response object.</param>
+        </member>
+        <member name="P:NScrape.PlainTextWebResponse.PlainText">
+            <summary>
+            Gets the plain text.
+            </summary>
+        </member>
+        <member name="T:NScrape.PostWebRequest">
+            <summary>
+            Represents a POST web request
+            </summary>
+        </member>
+        <member name="M:NScrape.PostWebRequest.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.PostWebRequest"/> class.
+            </summary>
+        </member>
+        <member name="M:NScrape.PostWebRequest.#ctor(System.Uri,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.PostWebRequest"/> class, specifying the destination and request data.
+            </summary>
+            <param name="destination">Specifies the destination of the request.</param>
+            <param name="requestData">Contains the request data in <b>application/x-www-form-urlencoded</b> format.</param>
+            <remarks>
+            Format the request data per the request's content type (by default, <b>application/x-www-form-urlencoded</b>).
+            </remarks>
+            <example>
+            <code>
+            var destination = new Uri( "http://www.foo.com" );
+            var requestData = "step=confirmation&amp;rt=L&amp;rp=%2Flogin%2Fhome&amp;p=0&amp;inputEmailHandle=foo&amp;inputPassword=bar";
+            
+            var request = new PostWebRequest( destination, requestData );
+            </code>
+            </example>
+        </member>
+        <member name="M:NScrape.PostWebRequest.#ctor(System.Uri,System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.PostWebRequest"/> class, specifying the destination, request data and redirection.
+            </summary>
+            <param name="destination">Specifies the destination of the request.</param>
+            <param name="requestData">Contains the request data in <b>application/x-www-form-urlencoded</b> format.</param>
+            <param name="autoRedirect"><b>true</b> if the request should be automatically redirected; <b>false</b> otherwise.</param>
+            <remarks>
+            Format the request data per the request's content type (by default, <b>application/x-www-form-urlencoded</b>).
+            </remarks>
+            <example>
+            <code>
+            var destination = new Uri( "http://www.foo.com" );
+            var requestData = "step=confirmation&amp;rt=L&amp;rp=%2Flogin%2Fhome&amp;p=0&amp;inputEmailHandle=foo&amp;inputPassword=bar";
+            var autoRedirect = false;
+            
+            var request = new PostWebRequest( destination, requestData, autoRedirect );
+            </code>
+            </example>
+        </member>
+        <member name="M:NScrape.PostWebRequest.#ctor(System.Uri,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.PostWebRequest"/> class, specifying the destination, request data and content type.
+            </summary>
+            <param name="destination">Specifies the destination of the request.</param>
+            <param name="requestData">Contains the request data.</param>
+            <param name="contentType">Contains the <b>MIME</b> content type.</param>
+            <remarks>
+            Format the request data per the specified <b>MIME</b> content type.
+            </remarks>
+            <example>
+            <code>
+            var request = new PostWebRequest( new Uri( "http://www.foo.com" ), "data data data", "text/plain" );
+            </code>
+            </example>
+        </member>
+        <member name="M:NScrape.PostWebRequest.#ctor(System.Uri,System.String,System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.PostWebRequest"/> class, specifying the destination, request data, content type and redirection.
+            </summary>
+            <param name="destination">Specifies the destination of the request.</param>
+            <param name="requestData">Contains the request data.</param>
+            <param name="contentType">Contains the <b>MIME</b> content type.</param>
+            <param name="autoRedirect"><b>true</b> if the request should be automatically redirected; <b>false</b> otherwise.</param>
+            <remarks>
+            Format the request data per the specified <b>MIME</b> content type.
+            </remarks>
+            <example>
+            <code>
+            var request = new PostWebRequest( new Uri( "http://www.foo.com" ), "data data data", "text/plain", false );
+            </code>
+            </example>
+        </member>
+        <member name="P:NScrape.PostWebRequest.ContentType">
+            <summary>
+            Gets or sets the content type.
+            </summary>
+            <remarks>
+            By default, the content type is set to <b>application/x-www-form-urlencoded</b>.
+            </remarks>
+        </member>
+        <member name="P:NScrape.PostWebRequest.RequestData">
+            <summary>
+            Gets or sets the request data.
+            </summary>
+        </member>
+        <member name="M:NScrape.PostWebRequest.ToString">
+            <summary>
+            Gets a <see cref="T:System.String"/> that represents the current <see cref="T:NScrape.PostWebRequest"/>.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents the current <see cref="T:NScrape.PostWebRequest"/>.
+            </returns>
+        </member>
+        <member name="T:NScrape.RedirectedWebResponse">
+            <summary>
+            Represents a web response for a request that was redirected.
+            </summary>
+        </member>
+        <member name="M:NScrape.RedirectedWebResponse.#ctor(System.Uri,NScrape.WebRequest,System.Uri)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.RedirectedWebResponse"/> class.
+            </summary>
+            <param name="responseUrl">The URL of the response.</param>
+            <param name="request">The original web request.</param>
+            <param name="redirectUrl">The redirect URL of the response.</param>
+        </member>
+        <member name="P:NScrape.RedirectedWebResponse.RedirectUrl">
+            <summary>
+            Gets the redirect URL
+            </summary>
+        </member>
+        <member name="P:NScrape.RedirectedWebResponse.WebRequest">
+            <summary>
+            Gets the original web request.
+            </summary>
+        </member>
+        <member name="T:NScrape.TextWebResponse">
+            <summary>
+            Provides the base implementation for classes which represent text-based web responses.
+            </summary>
+        </member>
+        <member name="M:NScrape.TextWebResponse.#ctor(System.Boolean,System.Uri,NScrape.WebResponseType,System.String,System.Text.Encoding)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.TextWebResponse"/> class.
+            </summary>
+            <param name="success"><b>true</b> if the response is considered successful, <b>false</b> otherwise.</param>
+            <param name="responseUrl">The URL of the response.</param>
+            <param name="responseType">The type of response.</param>
+            <param name="text">The text of the response.</param>
+            <param name="encoding">The encoding of the text.</param>
+            <remarks>
+            Deprecated; please use <see cref="M:NScrape.TextWebResponse.#ctor(System.Boolean,NScrape.WebResponseType,System.Net.HttpWebResponse)"/> instead.
+            </remarks>
+        </member>
+        <member name="M:NScrape.TextWebResponse.#ctor(System.Boolean,NScrape.WebResponseType,System.Net.HttpWebResponse)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.TextWebResponse"/> class.
+            </summary>
+            <param name="success"><b>true</b> if the response is considered successful, <b>false</b> otherwise.</param>
+            <param name="responseType">The type of response.</param>
+            <param name="webResponse">The web response object.</param>
+        </member>
+        <member name="M:NScrape.TextWebResponse.DisposeManagedRessources">
+            <summary>
+            Handles disposal of managed resources.
+            </summary>
+            <remarks>
+            Inheriting classes owning managed resources should override this method and use it to dispose of them.
+            </remarks>
+        </member>
+        <member name="P:NScrape.TextWebResponse.Text">
+            <summary>
+            Gets the text.
+            </summary>
+        </member>
+        <member name="P:NScrape.TextWebResponse.Encoding">
+            <summary>
+            Gets the encoding of the text.
+            </summary>
+        </member>
+        <member name="T:NScrape.UnsupportedWebResponse">
+            <summary>
+            Represents a web response for a request that returned unsupported content.
+            </summary>
+        </member>
+        <member name="M:NScrape.UnsupportedWebResponse.#ctor(System.Uri,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.UnsupportedWebResponse"/> class.
+            </summary>
+            <param name="responseUrl">The URL of the response.</param>
+            <param name="contentType">Contains the <b>MIME</b> content type.</param>
+        </member>
+        <member name="P:NScrape.UnsupportedWebResponse.ContentType">
+            <summary>
+            Gets the content type.
+            </summary>
+        </member>
+        <member name="T:NScrape.WebClient">
+            <summary>
+            Represents a web client that handles cookies and redirection.
+            </summary>
+        </member>
+        <member name="E:NScrape.WebClient.AddingCookie">
+            <summary>
+      Occurs when a cookie is added to the <see cref="P:NScrape.WebClient.CookieJar" />.
+    </summary><remarks>
+      As the <see cref="T:NScrape.WebClient" /> executes requests and receives cookies from the server in response, it stores
+      them in its cookie jar (a <see cref="T:System.Net.CookieContainer" />) and sends them along on subsequent requests.
+    </remarks><seealso cref="P:NScrape.WebClient.CookieJar" /><seealso cref="T:NScrape.AddingCookieEventArgs" />
+        </member>
+        <member name="E:NScrape.WebClient.SendingRequest">
+            <summary>
+      Occurs when a request is being sent.
+    </summary><remarks>
+      Use this event to be notified when the <see cref="T:NScrape.WebClient" /> sends a request.
+    </remarks><seealso cref="T:NScrape.SendingRequestEventArgs" />
+        </member>
+        <member name="E:NScrape.WebClient.ProcessingResponse">
+            <summary>
+      Occurs when a response has been received and is about to be processed.
+    </summary><remarks>
+      Use this event to be notified just before the <see cref="T:NScrape.IWebClient" /> begins to process a newly-received response.
+    </remarks>
+        </member>
+        <member name="M:NScrape.WebClient.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.WebClient"/> class.
+            </summary>
+        </member>
+        <member name="P:NScrape.WebClient.CookieJar">
+            <summary>
+      Gets the cookies that have been collected by the <see cref="T:NScrape.WebClient" /> in the course of executing requests.
+    </summary><remarks>
+      As the <see cref="T:NScrape.WebClient" /> executes requests and receives cookies from the server in response, it stores
+      them in its cookie jar (a <see cref="T:System.Net.CookieContainer" />) and sends them along on subsequent requests.
+      <br /><br />
+      To be notified when a cookie is added to the jar, subscribe to the <see cref="E:NScrape.WebClient.AddingCookie" /> event.
+    </remarks><seealso cref="E:NScrape.WebClient.AddingCookie" />
+        </member>
+        <member name="M:NScrape.WebClient.OnAddingCookie(NScrape.AddingCookieEventArgs)">
+            <summary>
+            Raises the <see cref="E:NScrape.WebClient.AddingCookie"/> event.
+            </summary>
+            <remarks>
+            Called when a cookie is added to the <see cref="P:NScrape.WebClient.CookieJar"/>.
+            </remarks>
+            <param name="args">An <see cref="T:NScrape.AddingCookieEventArgs"/> that contains the event data.</param>
+            <seealso cref="E:NScrape.WebClient.AddingCookie"/>
+            <seealso cref="T:NScrape.AddingCookieEventArgs"/>
+        </member>
+        <member name="M:NScrape.WebClient.OnSendingRequest(NScrape.SendingRequestEventArgs)">
+            <summary>
+            Raises the <see cref="E:NScrape.WebClient.SendingRequest"/> event.
+            </summary>
+            <remarks>
+            Called when a request is being sent.
+            </remarks>
+            <param name="args">A <see cref="T:NScrape.SendingRequestEventArgs"/> that contains the event data.</param>
+            <seealso cref="E:NScrape.WebClient.SendingRequest"/>
+        </member>
+        <member name="M:NScrape.WebClient.OnProcessingResponse(NScrape.ProcessingResponseEventArgs)">
+            <summary>
+            Raises the <see cref="E:NScrape.WebClient.ProcessingResponse"/> event.
+            </summary>
+            <remarks>
+            Called when a response has been received.
+            </remarks>
+            <param name="args">A <see cref="T:NScrape.ProcessingResponseEventArgs"/> that contains the event data.</param>
+            <seealso cref="E:NScrape.WebClient.SendingRequest"/>
+        </member>
+        <member name="M:NScrape.WebClient.SendRequest(System.Uri)">
+            <summary>
+      Sends a GET request.
+    </summary><param name="destination">Specifies the destination of the request.</param><remarks>
+      Sends a GET request that shall be automatically redirected if applicable.
+    </remarks><returns>The response from the server.</returns><example>
+      <code>
+        var webClient = new WebClient();
+
+        var uri = new Uri( "http://www.foo.com" );
+
+        using ( var response = webClient.SendRequest( uri ) ) {
+
+        }
+      </code>
+    </example><seealso cref="T:NScrape.WebResponse" />
+        </member>
+        <member name="M:NScrape.WebClient.SendRequest(System.Uri,System.Boolean)">
+            <summary>
+      Sends a GET request, specifying redirection.
+    </summary><param name="destination">Specifies the destination of the request.</param><param name="autoRedirect">
+      <b>true</b> if the request should be automatically redirected; <b>false</b> otherwise.
+    </param><remarks>
+      Sends a GET request, specifying whether the request shall be automatically redirected if applicable.
+    </remarks><returns>The response from the server.</returns><example>
+      <code>
+        var webClient = new WebClient();
+
+        var uri = new Uri( "http://www.foo.com" );
+
+        using ( var response = webClient.SendRequest( uri, false ) ) {
+
+        }
+      </code>
+    </example><seealso cref="T:NScrape.WebResponse" />
+        </member>
+        <member name="M:NScrape.WebClient.SendRequest(System.Uri,System.String)">
+            <summary>
+      Sends a POST request.
+    </summary><param name="destination">Specifies the destination of the request.</param><param name="requestData">
+      Contains the request data in <b>application/x-www-form-urlencoded</b> format.
+    </param><remarks>
+      Sends a POST request that shall be automatically redirected if applicable.
+    </remarks><returns>The response from the server.</returns><example>
+      <code>
+        var webClient = new WebClient();
+
+        var uri = new Uri( "http://www.foo.com" );
+        var data = "step=confirmation&amp;rt=L&amp;rp=%2Flogin%2Fhome&amp;p=0&amp;inputEmailHandle=foo&amp;inputPassword=bar";
+
+        using ( var response = webClient.SendRequest( uri, data ) ) {
+
+        }
+      </code>
+    </example><returns>The response from the server.</returns><seealso cref="T:NScrape.WebResponse" />
+        </member>
+        <member name="M:NScrape.WebClient.SendRequest(System.Uri,System.String,System.Boolean)">
+            <summary>
+      Sends a POST request, specifying redirection.
+    </summary><param name="destination">Specifies the destination of the request.</param><param name="requestData">
+      Contains the request data in <b>application/x-www-form-urlencoded</b> format.
+    </param><param name="autoRedirect">
+      <b>true</b> if the request should be automatically redirected; <b>false</b> otherwise.
+    </param><remarks>
+      Sends a POST request, specifying whether the request shall be automatically redirected if applicable.
+    </remarks><returns>The response from the server.</returns><example>
+      <code>
+        var webClient = new WebClient();
+
+        var uri = new Uri( "http://www.foo.com" );
+        var data = "step=confirmation&amp;rt=L&amp;rp=%2Flogin%2Fhome&amp;p=0&amp;inputEmailHandle=foo&amp;inputPassword=bar";
+
+        using ( var response = webClient.SendRequest( uri, data, false ) ) {
+
+        }
+      </code>
+    </example><returns>The response from the server.</returns><seealso cref="T:NScrape.WebResponse" />
+        </member>
+        <member name="M:NScrape.WebClient.SendRequest(NScrape.WebRequest)">
+            <summary>
+      Sends a GET or POST request.
+    </summary><param name="webRequest">The request to send.</param><remarks>
+      Sends a GET or POST request.
+    </remarks><returns>The response from the server.</returns><example>
+      <code>
+        var webClient = new WebClient();
+
+        var request = new PostWebRequest() {
+            Destination = new Uri( "http://www.foo.com" ),
+            RequestData = "step=confirmation&amp;rt=L&amp;rp=%2Flogin%2Fhome&amp;p=0&amp;inputEmailHandle=foo&amp;inputPassword=bar"
+        };
+
+        using ( var response = webClient.SendRequest( request ) ) {
+
+        }
+      </code>
+    </example><seealso cref="T:NScrape.WebRequest" /><seealso cref="T:NScrape.WebResponse" />
+        </member>
+        <member name="P:NScrape.WebClient.UserAgent">
+            <summary>
+      Gets or sets the user agent for requests made by a <see cref="T:NScrape.WebClient" />.
+    </summary><remarks>
+      If the user agent is not explicitly set, it defaults to a string of the form: <code>NScrape/[version] (+https://github.com/darrylwhitmore/NScrape)</code>
+    </remarks><example>
+      <code>
+        var webClient = new WebClient {
+            UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko"
+        };
+      </code>
+    </example>
+        </member>
+        <member name="T:NScrape.WebRequest">
+            <summary>
+            Provides the base implementation for classes which represent web requests.
+            </summary>
+        </member>
+        <member name="M:NScrape.WebRequest.#ctor(NScrape.WebRequestType)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.WebRequest"/> class.
+            </summary>
+            <param name="type">Specifies the type of web request.</param>
+        </member>
+        <member name="M:NScrape.WebRequest.#ctor(NScrape.WebRequestType,System.Uri)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.WebRequest"/> class.
+            </summary>
+            <param name="type">Specifies the type of web request.</param>
+            <param name="destination">Specifies the destination of the request.</param>
+        </member>
+        <member name="P:NScrape.WebRequest.AutoRedirect">
+            <summary>
+            Gets or sets a value specifying whether the request shall be automatically redirected.
+            </summary>
+            <remarks>
+            If <b>true</b>, the request shall be automatically redirected if specified by the server; if <b>false</b>, the
+            request shall return a <see cref="T:NScrape.RedirectedWebResponse"/>.
+            </remarks>
+        </member>
+        <member name="P:NScrape.WebRequest.Destination">
+            <summary>
+            Gets or sets the destination of the request.
+            </summary>
+        </member>
+        <member name="P:NScrape.WebRequest.Headers">
+            <summary>
+            Gets the collection of headers that shall be sent with the request.
+            </summary>
+            <remarks>
+            Headers may be sent with the request by adding them to the headers collection.
+            </remarks>
+        </member>
+        <member name="P:NScrape.WebRequest.Type">
+            <summary>
+            Gets the type of the request.
+            </summary>
+        </member>
+        <member name="P:NScrape.WebRequest.IsXmlHttpRequest">
+            <summary>
+            Gets or sets a value indicating whether the request shall attempt to mimic a JQuery request.
+            </summary>
+            <remarks>
+            If <b>true</b>, the <b>X-Requested-With=XMLHttpRequest</b> header shall be added to the headers collection. If <b>false</b>,
+            the header shall be removed if previously added.
+            </remarks>
+        </member>
+        <member name="T:NScrape.WebRequestType">
+            <summary>
+            Indicates the type of web request.
+            </summary>
+        </member>
+        <member name="F:NScrape.WebRequestType.Get">
+            <summary>
+            A GET web request.
+            </summary>
+        </member>
+        <member name="F:NScrape.WebRequestType.Post">
+            <summary>
+            A POST web request.
+            </summary>
+        </member>
+        <member name="T:NScrape.WebResponse">
+            <summary>
+            Provides the base implementation for classes which represent web responses.
+            </summary>
+        </member>
+        <member name="M:NScrape.WebResponse.#ctor(System.Boolean,System.Uri,NScrape.WebResponseType)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.WebResponse"/> class.
+            </summary>
+            <param name="success"><b>true</b> if the response is considered successful, <b>false</b> otherwise.</param>
+            <param name="responseUrl">The URL of the response.</param>
+            <param name="responseType">The type of response.</param>
+        </member>
+        <member name="M:NScrape.WebResponse.Finalize">
+            <summary>
+            Allows an object to try to free resources and perform other cleanup operations before it is reclaimed by garbage collection.
+            </summary>
+        </member>
+        <member name="M:NScrape.WebResponse.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="M:NScrape.WebResponse.DisposeManagedRessources">
+            <summary>
+            Handles disposal of managed resources.
+            </summary>
+            <remarks>
+            Inheriting classes owning managed resources should override this method and use it to dispose of them.
+            </remarks>
+        </member>
+        <member name="M:NScrape.WebResponse.DisposeUnmanagedRessources">
+            <summary>
+            Handles disposal of unmanaged resources.
+            </summary>
+            <remarks>
+            Inheriting classes owning unmanaged resources should override this method and use it to dispose of them.
+            </remarks>
+        </member>
+        <member name="P:NScrape.WebResponse.Success">
+            <summary>
+            Gets a value indicating whether the response is considered successful.
+            </summary>
+        </member>
+        <member name="P:NScrape.WebResponse.ResponseType">
+            <summary>
+            Gets the type of the response.
+            </summary>
+        </member>
+        <member name="P:NScrape.WebResponse.ResponseUrl">
+            <summary>
+            Gets the URL of the response.
+            </summary>
+        </member>
+        <member name="T:NScrape.WebResponseFactory">
+            <summary>
+            Creates a <see cref="T:NScrape.WebResponse"/> object based on an <see cref="T:System.Net.HttpWebResponse"/> object.
+            </summary>
+        </member>
+        <member name="M:NScrape.WebResponseFactory.#cctor">
+            <summary>
+            Initializes static members of the <see cref="T:NScrape.WebResponseFactory"/> class.
+            </summary>
+        </member>
+        <member name="P:NScrape.WebResponseFactory.SupportedContentTypes">
+            <summary>
+            Gets a dictionary containing all content types currently suported by the
+            <see cref="T:NScrape.WebResponseFactory"/>.
+            </summary>
+            <remarks>
+            The key of the dictionary is the text the content type
+            must start with (but not necessarily the full text of the content type).
+            <br/><br/>
+            The value is a
+            <see cref="T:System.Func`2"/> that takes an <see cref="T:System.Net.HttpWebResponse"/>
+            object with the given content type and returns a <see cref="T:NScrape.WebResponse"/>. The return value
+            is usually a subclass of the <see cref="T:NScrape.WebResponse"/> class.
+            </remarks>
+        </member>
+        <member name="M:NScrape.WebResponseFactory.CreateHtmlResponse(System.Net.HttpWebResponse)">
+            <summary>
+            Creates an <see cref="T:NScrape.HtmlWebResponse"/>.
+            </summary>
+            <param name="webResponse">
+            The original <see cref="T:System.Net.HttpWebResponse"/>.
+            </param>
+            <returns>
+            A new <see cref="T:NScrape.HtmlWebResponse"/>.
+            </returns>
+        </member>
+        <member name="M:NScrape.WebResponseFactory.CreateImageResponse(System.Net.HttpWebResponse)">
+            <summary>
+            Creates a <see cref="T:NScrape.ImageWebResponse"/>.
+            </summary>
+            <param name="webResponse">
+            The original <see cref="T:System.Net.HttpWebResponse"/>.
+            </param>
+            <returns>
+            A new <see cref="T:NScrape.ImageWebResponse"/>.
+            </returns>
+        </member>
+        <member name="M:NScrape.WebResponseFactory.CreatePlainTextResponse(System.Net.HttpWebResponse)">
+            <summary>
+            Creates a <see cref="T:NScrape.PlainTextWebResponse"/>.
+            </summary>
+            <param name="webResponse">
+            The original <see cref="T:System.Net.HttpWebResponse"/>.
+            </param>
+            <returns>
+            A new <see cref="T:NScrape.PlainTextWebResponse"/>.
+            </returns>
+        </member>
+        <member name="M:NScrape.WebResponseFactory.CreateTextResponse(System.Net.HttpWebResponse)">
+            <summary>
+            Creates a <see cref="T:NScrape.PlainTextWebResponse"/>.
+            </summary>
+            <param name="webResponse">
+            The original <see cref="T:System.Net.HttpWebResponse"/>.
+            </param>
+            <returns>
+            A new <see cref="T:NScrape.PlainTextWebResponse"/>.
+            </returns>
+            <remarks>
+            Deprecated; please use <see cref="M:NScrape.WebResponseFactory.CreatePlainTextResponse(System.Net.HttpWebResponse)"/> instead.
+            </remarks>
+        </member>
+        <member name="M:NScrape.WebResponseFactory.CreateXmlResponse(System.Net.HttpWebResponse)">
+            <summary>
+            Creates an <see cref="T:NScrape.XmlWebResponse"/>.
+            </summary>
+            <param name="webResponse">
+            The original <see cref="T:System.Net.HttpWebResponse"/>.
+            </param>
+            <returns>
+            A new <see cref="T:NScrape.XmlWebResponse"/>.
+            </returns>
+        </member>
+        <member name="M:NScrape.WebResponseFactory.CreateBinaryResponse(System.Net.HttpWebResponse)">
+            <summary>
+            Creates a <see cref="T:NScrape.BinaryWebResponse"/>.
+            </summary>
+            <param name="webResponse">
+            The original <see cref="T:System.Net.HttpWebResponse"/>.
+            </param>
+            <returns>
+            A new <see cref="T:NScrape.BinaryWebResponse"/>.
+            </returns>
+        </member>
+        <member name="M:NScrape.WebResponseFactory.CreateJavaScriptResponse(System.Net.HttpWebResponse)">
+            <summary>
+            Creates a <see cref="T:NScrape.JavaScriptWebResponse"/>.
+            </summary>
+            <param name="webResponse">
+            The original <see cref="T:System.Net.HttpWebResponse"/>.
+            </param>
+            <returns>
+            A new <see cref="T:NScrape.JavaScriptWebResponse"/>.
+            </returns>
+        </member>
+        <member name="M:NScrape.WebResponseFactory.CreateJsonResponse(System.Net.HttpWebResponse)">
+            <summary>
+            Creates a <see cref="T:NScrape.JsonWebResponse"/>.
+            </summary>
+            <param name="webResponse">
+            The original <see cref="T:System.Net.HttpWebResponse"/>.
+            </param>
+            <returns>
+            A new <see cref="T:NScrape.JsonWebResponse"/>.
+            </returns>
+        </member>
+        <member name="M:NScrape.WebResponseFactory.CreateResponse(System.Net.HttpWebResponse)">
+            <summary>
+            Creates a <see cref="T:NScrape.WebResponse"/> for an <see cref="T:System.Net.HttpWebResponse"/>, based on its
+            content type.
+            </summary>
+            <param name="webResponse">
+            The <see cref="T:System.Net.HttpWebResponse"/> to parse.
+            </param>
+            <returns>
+            If the content type is registered with the <see cref="T:NScrape.WebResponseFactory"/>, the corresponding
+            <see cref="T:NScrape.WebResponse"/> object; otherwise, an <see cref="T:NScrape.UnsupportedWebResponse"/> object.
+            </returns>
+        </member>
+        <member name="M:NScrape.WebResponseFactory.GetEncoding(System.Net.HttpWebResponse)">
+            <summary>
+            Gets the encoding used by an <see cref="T:System.Net.HttpWebResponse"/>.
+            </summary>
+            <param name="webResponse">
+            The <see cref="T:System.Net.HttpWebResponse"/> for which to determine the content type.
+            </param>
+            <returns>
+            The content type used by the <see cref="T:System.Net.HttpWebResponse"/>.
+            </returns>
+            <remarks>
+            Deprecated; please use <see cref="M:NScrape.NScrapeExtensions.GetEncoding(System.Net.HttpWebResponse)"/> instead.
+            </remarks>
+        </member>
+        <member name="M:NScrape.WebResponseFactory.ReadResponseText(System.Net.HttpWebResponse)">
+            <summary>
+            Reads an <see cref="T:System.Net.HttpWebResponse"/> as plain text.
+            </summary>
+            <param name="webResponse">
+            The <see cref="T:System.Net.HttpWebResponse"/> to read.
+            </param>
+            <returns>
+            A <see cref="T:System.String"/> that represents the text of an <see cref="T:System.Net.HttpWebResponse"/>.
+            </returns>
+            <remarks>
+            Deprecated; please use <see cref="M:NScrape.NScrapeExtensions.GetResponseText(System.Net.HttpWebResponse,System.Text.Encoding)"/> instead.
+            </remarks>
+        </member>
+        <member name="M:NScrape.WebResponseFactory.ReadResponseText(System.Net.HttpWebResponse,System.Text.Encoding)">
+            <summary>
+            Reads an <see cref="T:System.Net.HttpWebResponse"/> as plain text.
+            </summary>
+            <param name="webResponse">
+            The <see cref="T:System.Net.HttpWebResponse"/> to read.
+            </param>
+            <param name="encoding">
+            The encoding used.
+            </param>
+            <returns>
+            A <see cref="T:System.String"/> that represents the text of an <see cref="T:System.Net.HttpWebResponse"/>.
+            </returns>
+            <remarks>
+            Deprecated; please use <see cref="M:NScrape.NScrapeExtensions.GetResponseText(System.Net.HttpWebResponse,System.Text.Encoding)"/> instead.
+            </remarks>
+        </member>
+        <member name="T:NScrape.WebResponseType">
+            <summary>
+            Indicates the type of web response.
+            </summary>
+        </member>
+        <member name="F:NScrape.WebResponseType.Exception">
+            <summary>
+            An exception reponse.
+            </summary>
+        </member>
+        <member name="F:NScrape.WebResponseType.Html">
+            <summary>
+            An HTML reponse.
+            </summary>
+        </member>
+        <member name="F:NScrape.WebResponseType.Image">
+            <summary>
+            An image reponse.
+            </summary>
+        </member>
+        <member name="F:NScrape.WebResponseType.JavaScript">
+            <summary>
+            A JavaScript reponse.
+            </summary>
+        </member>
+        <member name="F:NScrape.WebResponseType.Json">
+            <summary>
+            A JSON reponse.
+            </summary>
+        </member>
+        <member name="F:NScrape.WebResponseType.Redirect">
+            <summary>
+            A redirect reponse.
+            </summary>
+        </member>
+        <member name="F:NScrape.WebResponseType.PlainText">
+            <summary>
+            A plain text reponse.
+            </summary>
+        </member>
+        <member name="F:NScrape.WebResponseType.Unsupported">
+            <summary>
+            An unsupported reponse.
+            </summary>
+        </member>
+        <member name="F:NScrape.WebResponseType.Xml">
+            <summary>
+            An XML reponse.
+            </summary>
+        </member>
+        <member name="F:NScrape.WebResponseType.Binary">
+            <summary>
+            A binary reponse.
+            </summary>
+        </member>
+        <member name="T:NScrape.WebResponseValidator">
+            <summary>
+            Provides functionality to validate web responses.
+            </summary>
+        </member>
+        <member name="M:NScrape.WebResponseValidator.ValidateHtmlResponse(NScrape.WebResponse,System.String)">
+            <summary>
+            Validates a <see cref="T:NScrape.WebResponse"/> to be of type <see cref="F:NScrape.WebResponseType.Html"/>.
+            </summary>
+            <param name="response">The web response to be validated.</param>
+            <param name="message">The error message to be used to generate an exception if the validation fails.</param>
+            <returns>The web response cast as an <see cref="T:NScrape.HtmlWebResponse"/>.</returns>
+        </member>
+        <member name="M:NScrape.WebResponseValidator.ValidateImageResponse(NScrape.WebResponse,System.String)">
+            <summary>
+            Validates a <see cref="T:NScrape.WebResponse"/> to be of type <see cref="F:NScrape.WebResponseType.Image"/>.
+            </summary>
+            <param name="response">The web response to be validated.</param>
+            <param name="message">The error message to be used to generate an exception if the validation fails.</param>
+            <returns>The web response cast as an <see cref="T:NScrape.ImageWebResponse"/>.</returns>
+        </member>
+        <member name="M:NScrape.WebResponseValidator.ValidateJavaScriptResponse(NScrape.WebResponse,System.String)">
+            <summary>
+            Validates a <see cref="T:NScrape.WebResponse"/> to be of type <see cref="F:NScrape.WebResponseType.JavaScript"/>.
+            </summary>
+            <param name="response">The web response to be validated.</param>
+            <param name="message">The error message to be used to generate an exception if the validation fails.</param>
+            <returns>The web response cast as a <see cref="T:NScrape.JavaScriptWebResponse"/>.</returns>
+        </member>
+        <member name="M:NScrape.WebResponseValidator.ValidatePlaintextResponse(NScrape.WebResponse,System.String)">
+            <summary>
+            Validates a <see cref="T:NScrape.WebResponse"/> to be of type <see cref="F:NScrape.WebResponseType.PlainText"/>.
+            </summary>
+            <param name="response">The web response to be validated.</param>
+            <param name="message">The error message to be used to generate an exception if the validation fails.</param>
+            <returns>The web response cast as a <see cref="T:NScrape.PlainTextWebResponse"/>.</returns>
+        </member>
+        <member name="M:NScrape.WebResponseValidator.ValidateRedirectResponse(NScrape.WebResponse,System.String)">
+            <summary>
+            Validates a <see cref="T:NScrape.WebResponse"/> to be of type <see cref="F:NScrape.WebResponseType.Redirect"/>.
+            </summary>
+            <param name="response">The web response to be validated.</param>
+            <param name="message">The error message to be used to generate an exception if the validation fails.</param>
+            <returns>The web response cast as a <see cref="T:NScrape.RedirectedWebResponse"/>.</returns>
+        </member>
+        <member name="M:NScrape.WebResponseValidator.ValidateResponse(NScrape.WebResponse,NScrape.WebResponseType,System.String)">
+            <summary>
+            Validates a <see cref="T:NScrape.WebResponse"/> to be of a given type.
+            </summary>
+            <param name="response">The web response to be validated.</param>
+            <param name="validType">The valid web response type.</param>
+            <param name="message">The error message to be used to generate an exception if the validation fails.</param>
+            <returns>The web response.</returns>
+        </member>
+        <member name="M:NScrape.WebResponseValidator.ValidateResponse(NScrape.WebResponse,NScrape.WebResponseType[],System.String)">
+            <summary>
+            Validates a <see cref="T:NScrape.WebResponse"/> to be of a given range of types.
+            </summary>
+            <param name="response">The web response to be validated.</param>
+            <param name="validTypes">The range of valid web response types.</param>
+            <param name="message">The error message to be used to generate an exception if the validation fails.</param>
+            <returns>The web response.</returns>
+            <exception cref="T:System.Exception">The web response is not valid.</exception>
+        </member>
+        <member name="M:NScrape.WebResponseValidator.ValidateXmlResponse(NScrape.WebResponse,System.String)">
+            <summary>
+            Validates a <see cref="T:NScrape.WebResponse"/> to be of type <see cref="F:NScrape.WebResponseType.Xml"/>.
+            </summary>
+            <param name="response">The web response to be validated.</param>
+            <param name="message">The error message to be used to generate an exception if the validation fails.</param>
+            <returns>The web response cast as an <see cref="T:NScrape.XmlWebResponse"/>.</returns>
+        </member>
+        <member name="T:NScrape.XmlWebResponse">
+            <summary>
+            Represents a web response for a request that returned XML.
+            </summary>
+        </member>
+        <member name="M:NScrape.XmlWebResponse.#ctor(System.Boolean,System.Uri,System.String,System.Text.Encoding)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.XmlWebResponse"/> class.
+            </summary>
+            <param name="success"><b>true</b> if the response is considered successful, <b>false</b> otherwise.</param>
+            <param name="responseUrl">The URL of the response.</param>
+            <param name="xmlText">The XML text of the response.</param>
+            <param name="encoding">The encoding of the XML text.</param>
+            <remarks>
+            Deprecated; please use <see cref="M:NScrape.XmlWebResponse.#ctor(System.Boolean,System.Net.HttpWebResponse)"/> instead.
+            </remarks>
+        </member>
+        <member name="M:NScrape.XmlWebResponse.#ctor(System.Boolean,System.Net.HttpWebResponse)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NScrape.XmlWebResponse"/> class.
+            </summary>
+            <param name="success"><b>true</b> if the response is considered successful, <b>false</b> otherwise.</param>
+            <param name="webResponse">The web response object.</param>
+        </member>
+        <member name="P:NScrape.XmlWebResponse.XDocument">
+            <summary>
+            Gets the XML.
+            </summary>
+        </member>
+    </members>
+</doc>

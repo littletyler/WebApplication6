@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ISYS4283F1731ModelStoreContainer" CdmEntityContainer="ISYS4283F1731Entities">
+    <EntitySetMapping Name="tst_tbl">
+      <EntityTypeMapping TypeName="ISYS4283F1731Model.tst_tbl">
+        <MappingFragment StoreEntitySet="tst_tbl">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

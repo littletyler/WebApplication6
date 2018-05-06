@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ISYS4283F1731Model1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ApplicationBase">
+    <Key>
+      <PropertyRef Name="ApplicationID" />
+    </Key>
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="CurrentEmployer" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentEmployerTime" Type="Int32" />
+    <Property Name="CurrentEmployerPhone" Type="Single" />
+    <Property Name="FormerEmployer" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="FormerEmployerTime" Type="Int32" />
+    <Property Name="FormerEmployerPhone" Type="Single" />
+    <Property Name="AnnualIncome" Type="Int32" Nullable="false" />
+    <Property Name="FamilyMembersInHome" Type="Int32" Nullable="false" />
+    <Property Name="Dependents" Type="Int32" Nullable="false" />
+    <Property Name="Pets" Type="Int32" Nullable="false" />
+    <Property Name="PetType" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="RelationshipStatus" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="ApplicationStreetAddr" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ApplicationCity" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ApplicationStateAbbr" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ApplicationZip" Type="Int32" Nullable="false" />
+    <Property Name="ApplicationCounty" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UserBase" Relationship="Self.FK_UserIDApplication" FromRole="ApplicationBase" ToRole="UserBase" />
+  </EntityType>
+  <EntityType Name="EventHistory">
+    <Key>
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ActionDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="ActionType" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="StreetAddr" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="City" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StateAbbr" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Zip" Type="Int32" Nullable="false" />
+    <Property Name="County" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="UserBase">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SSN" Type="Double" />
+    <Property Name="DOB" Type="DateTime" Nullable="false" />
+    <Property Name="UserPassword" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="ApplicationBases" Relationship="Self.FK_UserIDApplication" FromRole="UserBase" ToRole="ApplicationBase" />
+    <NavigationProperty Name="UserInformations" Relationship="Self.FK_UserID" FromRole="UserBase" ToRole="UserInformation" />
+    <NavigationProperty Name="UserInformations1" Relationship="Self.FK_UserIDInformation" FromRole="UserBase" ToRole="UserInformation" />
+  </EntityType>
+  <EntityType Name="UserInformation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FormerFirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="FormerLastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="PreferredFirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentStreetAddr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentCity" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentStateAbbr" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentZip" Type="Int32" />
+    <Property Name="CurrentCountry" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentCounty" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="ResidencyYR" Type="Int32" />
+    <Property Name="FormerStreetAddr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FormerCity" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="FormerStateAbbr" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="FormerZip" Type="Int32" />
+    <Property Name="FormerCountry" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="FormerCounty" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="CellPhone" Type="Int32" />
+    <Property Name="WorkPhone" Type="Int32" />
+    <Property Name="Email" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MailingStreetAddr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MailingCity" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="MailingStateAbbr" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="MailingZip" Type="Int32" />
+    <Property Name="MailingCountry" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="MailingCounty" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UserBase" Relationship="Self.FK_UserID" FromRole="UserInformation" ToRole="UserBase" />
+    <NavigationProperty Name="UserBase1" Relationship="Self.FK_UserIDInformation" FromRole="UserInformation" ToRole="UserBase" />
+  </EntityType>
+  <Association Name="FK_UserIDApplication">
+    <End Role="UserBase" Type="Self.UserBase" Multiplicity="1" />
+    <End Role="ApplicationBase" Type="Self.ApplicationBase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserBase">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="ApplicationBase">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserID">
+    <End Role="UserBase" Type="Self.UserBase" Multiplicity="1" />
+    <End Role="UserInformation" Type="Self.UserInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserBase">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserInformation">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserIDInformation">
+    <End Role="UserBase" Type="Self.UserBase" Multiplicity="1" />
+    <End Role="UserInformation" Type="Self.UserInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserBase">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserInformation">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ISYS4283F1731Entities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ApplicationBases" EntityType="Self.ApplicationBase" />
+    <EntitySet Name="EventHistories" EntityType="Self.EventHistory" />
+    <EntitySet Name="UserBases" EntityType="Self.UserBase" />
+    <EntitySet Name="UserInformations" EntityType="Self.UserInformation" />
+    <AssociationSet Name="FK_UserIDApplication" Association="Self.FK_UserIDApplication">
+      <End Role="UserBase" EntitySet="UserBases" />
+      <End Role="ApplicationBase" EntitySet="ApplicationBases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserID" Association="Self.FK_UserID">
+      <End Role="UserBase" EntitySet="UserBases" />
+      <End Role="UserInformation" EntitySet="UserInformations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserIDInformation" Association="Self.FK_UserIDInformation">
+      <End Role="UserBase" EntitySet="UserBases" />
+      <End Role="UserInformation" EntitySet="UserInformations" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
